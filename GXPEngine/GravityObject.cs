@@ -21,24 +21,19 @@ public class GravityObject : GameObject
         Draw();
     }
 
-    public void Step()
+    public virtual void Step()
     {
         Planet nearestPlanet = FindNearestPlanet();
         Vec2Collider colider = gCollider._collider;
         Vec2Collider planetColider = nearestPlanet.gCollider._collider;
-        if (Vec2PhysicsCalculations.TimeOfImpactBall(colider._velocity, colider._position, colider.GetOldPosition(), planetColider._position, radius, nearestPlanet.radius) < 0.0000001f)
+        if (Vec2PhysicsCalculations.TimeOfImpactBall(colider._velocity, colider._position, colider.GetOldPosition(), planetColider._position, radius, nearestPlanet.radius) < 0.0001f ||
+            (colider._position.distance(planetColider._position)-(radius+nearestPlanet.radius)) <= 0.000001f)
         {
             float aproachSpeed = colider._velocity.Normalized().Dot((planetColider._position - colider._position).Normalized());
-            Console.WriteLine(aproachSpeed);
 
-            /*
-            float planetAngle = (planetColider._position - colider._position).GetAngleDegrees();
-            float velocityAngle = colider._velocity.GetAngleDegrees();
+            Vec2 planetAngle = planetColider._position - colider._position;
 
-            if (planetAngle - velocityAngle > 90) colider._velocity = new Vec2(0,0);
-
-            Console.WriteLine("planet C" + (planetAngle-velocityAngle));
-            */
+            colider._position = planetColider._position + (planetAngle.Normalized() * -(radius + nearestPlanet.radius));
 
             colider._velocity = new Vec2(0, 0);
         }

@@ -39,14 +39,15 @@ public class MyGame : Game
     {
 
         Vec2CollisionManager.UpdateOldPositions();
-        Vec2GravityHandler.handleGravity();
-
-        obj.handleInputs();
 
         planet.gCollider._collider._position = new Vec2(Input.mouseX, Input.mouseY);
 
+        Vec2GravityHandler.handleGravity();
+
         // requests the collision manager to resolve all collisions
         Vec2CollisionManager.HandleCollisions();
+
+        obj.Step();
 
         planet.UpdateScreenPosition();
         obj.UpdateScreenPosition();
@@ -54,7 +55,7 @@ public class MyGame : Game
         objDraw.SetXY(obj.x, obj.y);
         //objDraw.Ellipse(objDraw.width/2, objDraw.height/2, objDraw.width, objDraw.height);
 
-        obj.Step();
+        
 
     }
 }

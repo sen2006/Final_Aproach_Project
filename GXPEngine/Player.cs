@@ -1,4 +1,5 @@
 ﻿using GXPEngine;
+using GXPEngine.Core;
 using System;
 public class Player : GravityObject
 {
@@ -6,6 +7,7 @@ public class Player : GravityObject
     Vec2 targetRotation = new Vec2(0,0);
 
     float nearestPlanetForce = 0;
+    Planet nearestPlanet = null;
 
     EasyDraw easyDraw;
     public Player(Vec2 position, float radius, float density = 1) : base(position, radius, density)
@@ -14,21 +16,33 @@ public class Player : GravityObject
         easyDraw.SetOrigin(radius, radius);
     }
 
+    public override void Step()
+    {
+        handleInputs();
+        base.Step();
+    }
+
     public void handleInputs()
     {
-        if (Input.GetKey(Key.SPACE)) {
-            gCollider._collider._velocity.Lerp(vecRotation * Settings.boosterPower * (1+(nearestPlanetForce * .03f)) * -1, .01f);
-            if (gCollider._collider._velocity.Length() <= 0.000001)
+        if (Input.GetKey(Key.SPACE))
+        {
+            Console.WriteLine(gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius));
+
+            // not run more than once
+            if (true || (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= 5f))
             {
-                gCollider._collider._position += vecRotation * -0.5f;
-                Console.WriteLine("YIPPEE");
-            } 
+
+                Vec2 planetAngle = nearestPlanet.gCollider._collider._position - gCollider._collider._position;
+                gCollider._collider._position = nearestPlanet.gCollider._collider._position + (planetAngle.Normalized() * -(2.5f+radius+nearestPlanet.radius));
+                gCollider._collider._velocity = planetAngle.Normalized() * -10;
+                Console.WriteLine("it worked");
+            }
+            gCollider._collider._velocity.Lerp(vecRotation * Settings.boosterPower * (1 + (nearestPlanetForce * .03f)) * -1, .01f);
         }
     }
 
     public override void UpdateScreenPosition()
     {
-
         base.UpdateScreenPosition();
         rotateToNearestPlanet();
     }
@@ -44,12 +58,10 @@ public class Player : GravityObject
 
     public void rotateToNearestPlanet()
     {
-        Planet nearestPlanet = FindNearestPlanet();
+        nearestPlanet = FindNearestPlanet();
         Vec2 direction = nearestPlanet.gCollider._collider._position - gCollider._collider._position;
         float distance = direction.Length();
         float forceMagnitude = (Settings.gravitationalConstant * nearestPlanet.gCollider._collider.mass * this.gCollider._collider.mass) / Mathf.Pow(distance, 2);
-
-        Console.WriteLine(forceMagnitude);
 
         nearestPlanetForce = 0;
         if (forceMagnitude >= Settings.minGravityToRotate)
