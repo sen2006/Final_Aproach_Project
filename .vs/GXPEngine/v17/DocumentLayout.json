@@ -1,50 +1,46 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\",
+  "WorkspaceRootPath": "C:\\Users\\FinnS\\Desktop\\Final_Aproach_Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\gxpengine\\mygame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|c:\\users\\finns\\desktop\\final_aproach_project\\gxpengine\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|solutionrelative:gxpengine\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|c:\\users\\finns\\desktop\\final_aproach_project\\gxpengine\\mygame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|solutionrelative:gxpengine\\mygame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|c:\\users\\sen\\desktop\\gitkraken\\physics_programming\\final game (vec2 v3)\\gxpengine\\wallsegment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|C:\\Users\\FinnS\\Desktop\\Final_Aproach_Project\\gxpengine\\wallsegment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|solutionrelative:gxpengine\\wallsegment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\gxpengine\\playercamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|solutionrelative:gxpengine\\playercamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\gxpengine\\hovercraft.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|solutionrelative:gxpengine\\hovercraft.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\gxpengine\\checkpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|solutionrelative:gxpengine\\checkpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\gxpengine\\physics\\vec2physicscalculations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|solutionrelative:gxpengine\\physics\\vec2physicscalculations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\gxpengine\\physics\\vec2collider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|solutionrelative:gxpengine\\physics\\vec2collider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\gxpengine\\physics\\vec2collidermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|solutionrelative:gxpengine\\physics\\vec2collidermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\gxpengine\\physics\\colliders\\vec2linecollider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|solutionrelative:gxpengine\\physics\\colliders\\vec2linecollider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\gxpengine\\physics\\colliders\\vec2ballcollider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|solutionrelative:gxpengine\\physics\\colliders\\vec2ballcollider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\gxpengine\\vec2\\vec2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|C:\\Users\\FinnS\\Desktop\\Final_Aproach_Project\\gxpengine\\vec2\\vec2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|solutionrelative:gxpengine\\vec2\\vec2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Vec2ColliderManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Vec2PhysicsCalculations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Vec2Collider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\HoverCraft.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Colliders\\Vec2BallCollider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Colliders\\Vec2LineCollider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\PlayerCamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\CheckPoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,17 +50,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MyGame.cs",
-              "DocumentMoniker": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\MyGame.cs",
+              "DocumentMoniker": "C:\\Users\\FinnS\\Desktop\\Final_Aproach_Project\\GXPEngine\\MyGame.cs",
               "RelativeDocumentMoniker": "GXPEngine\\MyGame.cs",
-              "ToolTip": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\MyGame.cs",
+              "ToolTip": "C:\\Users\\FinnS\\Desktop\\Final_Aproach_Project\\GXPEngine\\MyGame.cs",
               "RelativeToolTip": "GXPEngine\\MyGame.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAowBoAAAAUAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAowBUAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-12T12:39:17.239Z",
               "IsPinned": true,
@@ -72,25 +68,37 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "WallSegment.cs",
-              "DocumentMoniker": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\WallSegment.cs",
-              "RelativeDocumentMoniker": "GXPEngine\\WallSegment.cs",
-              "ToolTip": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\WallSegment.cs",
-              "RelativeToolTip": "GXPEngine\\WallSegment.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAhAAAA",
+              "DocumentIndex": 0,
+              "Title": "Player.cs",
+              "DocumentMoniker": "C:\\Users\\FinnS\\Desktop\\Final_Aproach_Project\\GXPEngine\\Player\\Player.cs",
+              "RelativeDocumentMoniker": "GXPEngine\\Player\\Player.cs",
+              "ToolTip": "C:\\Users\\FinnS\\Desktop\\Final_Aproach_Project\\GXPEngine\\Player\\Player.cs",
+              "RelativeToolTip": "GXPEngine\\Player\\Player.cs",
+              "ViewState": "AQIAACkAAAAAAAAAAAAgwDAAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-12T12:41:18.461Z",
+              "WhenOpened": "2024-05-08T14:23:10.332Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
+              "Title": "WallSegment.cs",
+              "DocumentMoniker": "C:\\Users\\FinnS\\Desktop\\Final_Aproach_Project\\GXPEngine\\WallSegment.cs",
+              "RelativeDocumentMoniker": "GXPEngine\\WallSegment.cs",
+              "ToolTip": "C:\\Users\\FinnS\\Desktop\\Final_Aproach_Project\\GXPEngine\\WallSegment.cs",
+              "RelativeToolTip": "GXPEngine\\WallSegment.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-12T12:41:18.461Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Vec2ColliderManager.cs",
               "DocumentMoniker": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Vec2ColliderManager.cs",
-              "RelativeDocumentMoniker": "GXPEngine\\Physics\\Vec2ColliderManager.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Vec2ColliderManager.cs",
               "ToolTip": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Vec2ColliderManager.cs",
-              "RelativeToolTip": "GXPEngine\\Physics\\Vec2ColliderManager.cs",
+              "RelativeToolTip": "..\\..\\..\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Vec2ColliderManager.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-12T12:25:06.394Z"
@@ -100,9 +108,9 @@
               "DocumentIndex": 5,
               "Title": "Vec2PhysicsCalculations.cs",
               "DocumentMoniker": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Vec2PhysicsCalculations.cs",
-              "RelativeDocumentMoniker": "GXPEngine\\Physics\\Vec2PhysicsCalculations.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Vec2PhysicsCalculations.cs",
               "ToolTip": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Vec2PhysicsCalculations.cs",
-              "RelativeToolTip": "GXPEngine\\Physics\\Vec2PhysicsCalculations.cs",
+              "RelativeToolTip": "..\\..\\..\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Vec2PhysicsCalculations.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAFkAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-12T12:23:23.234Z"
@@ -112,80 +120,80 @@
               "DocumentIndex": 6,
               "Title": "Vec2Collider.cs",
               "DocumentMoniker": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Vec2Collider.cs",
-              "RelativeDocumentMoniker": "GXPEngine\\Physics\\Vec2Collider.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Vec2Collider.cs",
               "ToolTip": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Vec2Collider.cs",
-              "RelativeToolTip": "GXPEngine\\Physics\\Vec2Collider.cs",
+              "RelativeToolTip": "..\\..\\..\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Vec2Collider.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-12T12:23:18.617Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "HoverCraft.cs",
               "DocumentMoniker": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\HoverCraft.cs",
-              "RelativeDocumentMoniker": "GXPEngine\\HoverCraft.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\HoverCraft.cs",
               "ToolTip": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\HoverCraft.cs",
-              "RelativeToolTip": "GXPEngine\\HoverCraft.cs",
+              "RelativeToolTip": "..\\..\\..\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\HoverCraft.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-12T12:21:59.144Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 8,
               "Title": "Vec2BallCollider.cs",
               "DocumentMoniker": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Colliders\\Vec2BallCollider.cs",
-              "RelativeDocumentMoniker": "GXPEngine\\Physics\\Colliders\\Vec2BallCollider.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Colliders\\Vec2BallCollider.cs",
               "ToolTip": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Colliders\\Vec2BallCollider.cs",
-              "RelativeToolTip": "GXPEngine\\Physics\\Colliders\\Vec2BallCollider.cs",
+              "RelativeToolTip": "..\\..\\..\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Colliders\\Vec2BallCollider.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAABQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-12T12:19:35.473Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Vec2LineCollider.cs",
               "DocumentMoniker": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Colliders\\Vec2LineCollider.cs",
-              "RelativeDocumentMoniker": "GXPEngine\\Physics\\Colliders\\Vec2LineCollider.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Colliders\\Vec2LineCollider.cs",
               "ToolTip": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Colliders\\Vec2LineCollider.cs",
-              "RelativeToolTip": "GXPEngine\\Physics\\Colliders\\Vec2LineCollider.cs",
+              "RelativeToolTip": "..\\..\\..\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Physics\\Colliders\\Vec2LineCollider.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAqwAwAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-12T12:19:32.733Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
               "Title": "PlayerCamera.cs",
               "DocumentMoniker": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\PlayerCamera.cs",
-              "RelativeDocumentMoniker": "GXPEngine\\PlayerCamera.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\PlayerCamera.cs",
               "ToolTip": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\PlayerCamera.cs",
-              "RelativeToolTip": "GXPEngine\\PlayerCamera.cs",
+              "RelativeToolTip": "..\\..\\..\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\PlayerCamera.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-12T12:59:24.684Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 11,
               "Title": "CheckPoint.cs",
               "DocumentMoniker": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\CheckPoint.cs",
-              "RelativeDocumentMoniker": "GXPEngine\\CheckPoint.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\CheckPoint.cs",
               "ToolTip": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\CheckPoint.cs",
-              "RelativeToolTip": "GXPEngine\\CheckPoint.cs",
+              "RelativeToolTip": "..\\..\\..\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\CheckPoint.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-14T09:16:01.141Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 3,
               "Title": "Vec2.cs",
-              "DocumentMoniker": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Vec2\\Vec2.cs",
+              "DocumentMoniker": "C:\\Users\\FinnS\\Desktop\\Final_Aproach_Project\\GXPEngine\\Vec2\\Vec2.cs",
               "RelativeDocumentMoniker": "GXPEngine\\Vec2\\Vec2.cs",
-              "ToolTip": "C:\\Users\\sen\\Desktop\\GitKraken\\Physics_Programming\\Final Game (vec2 V3)\\GXPEngine\\Vec2\\Vec2.cs",
+              "ToolTip": "C:\\Users\\FinnS\\Desktop\\Final_Aproach_Project\\GXPEngine\\Vec2\\Vec2.cs",
               "RelativeToolTip": "GXPEngine\\Vec2\\Vec2.cs",
               "ViewState": "AQIAAA4BAAAAAAAAAAAwwBQBAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
