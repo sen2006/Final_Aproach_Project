@@ -4,8 +4,8 @@ using System;
 using TiledMapParser;
 public class Player : GravityObject
 {
-    Vec2 vecRotation = new Vec2();
-    Vec2 targetRotation = new Vec2(0,0);
+    public Vec2 vecRotation = new Vec2();
+    Vec2 targetRotation = new Vec2(0, 0);
 
     float nearestPlanetForce = 0;
     Planet nearestPlanet = null;
@@ -18,11 +18,10 @@ public class Player : GravityObject
         easyDraw = new EasyDraw(Mathf.Ceiling(radius) * 2, Mathf.Ceiling(radius) * 2);
         easyDraw.SetOrigin(radius, radius);
 
-        MyGame.player = this;
+        MyGame.GetGame().player = this;
         MyGame.GetGame().AddChild(this);
 
-        gCollider._collider.SetStationary(obj.GetBoolProperty("stationary", false));
-        ((Vec2BallCollider)gCollider._collider).radius = 20;
+        Console.WriteLine("player loaded at " + x + "-" + y + " stationary:" + gCollider._collider.IsStationary());
     }
 
     public override void Step()
@@ -40,7 +39,7 @@ public class Player : GravityObject
         }
     }
 
-        public void handleInputs()
+    public void handleInputs()
     {
         if (Input.GetKey(Key.SPACE))
         {
@@ -52,7 +51,7 @@ public class Player : GravityObject
 
                     Vec2 planetAngle = nearestPlanet.gCollider._collider._position - gCollider._collider._position;
                     gCollider._collider._position = nearestPlanet.gCollider._collider._position + (planetAngle.Normalized() * -(2.5f + radius + nearestPlanet.radius));
-                    gCollider._collider._velocity += planetAngle.Normalized() * -Settings.maxVelocity;
+                    /*gCollider._collider._velocity += planetAngle.Normalized() * -Settings.maxVelocity;
                     if (Input.GetKey(Key.D))
                     {
                         gCollider._collider._velocity.RotateDegrees(60);
@@ -60,13 +59,14 @@ public class Player : GravityObject
                     if (Input.GetKey(Key.A))
                     {
                         gCollider._collider._velocity.RotateDegrees(-60);
-                    }
+                    }*/
                 }
                 gCollider._collider._velocity.Lerp(vecRotation * Settings.boosterPower * (1 + (nearestPlanetForce * .03f)) * -1, .01f);
             }
             fuel = Mathf.Max(fuel - Settings.fuelUsage, 0);
         }
-        if (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f) {
+        if (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f)
+        {
             if (Input.GetKey(Key.D))
             {
                 Vec2 targetMovament = targetRotation.Normalized() * Settings.walkSpeed;
@@ -89,11 +89,14 @@ public class Player : GravityObject
     {
         base.UpdateScreenPosition();
         rotateToNearestPlanet();
+
+        //Console.WriteLine("V:"+gCollider._collider._velocity);
+        //Console.WriteLine("P:"+gCollider._collider._position);
     }
 
     public override void Draw()
     {
-        if (!HasChild(easyDraw)) AddChild(easyDraw);
+        //if (!HasChild(easyDraw)) AddChild(easyDraw);
         easyDraw.Fill(255, 255, 255);
         easyDraw.StrokeWeight(1);
         easyDraw.Stroke(255, 0, 0);
@@ -113,9 +116,11 @@ public class Player : GravityObject
         {
             nearestPlanetForce = forceMagnitude;
             targetRotation = (nearestPlanet.gCollider._collider._position - gCollider._collider._position).Normalized();
-            vecRotation.Lerp(targetRotation, (distance-(radius+nearestPlanet.radius) <= 0.0000001f) ? .1f : .0025f + .025f * (forceMagnitude / 150));
+            vecRotation.Lerp(targetRotation, (distance - (radius + nearestPlanet.radius) <= 0.0000001f) ? .1f : .0025f + .025f * (forceMagnitude / 150));
 
-            easyDraw.rotation = vecRotation.GetAngleDegrees();
+            rotation = vecRotation.GetAngleDegrees() - 90;
         }
     }
+
+
 }

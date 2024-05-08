@@ -16,5 +16,6 @@ public static class Settings
     internal readonly static float maxFuel = 6f;
     internal readonly static float boosterPower = 4;
     internal readonly static float walkSpeed = 3;
+    internal readonly static bool cameraRotation = false; // warning motion sickness
 }
 

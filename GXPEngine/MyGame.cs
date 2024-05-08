@@ -8,7 +8,7 @@ public class MyGame : Game
 {
     public static MyGame myGame;
     public static Random random = new Random();
-    public static MyGame GetGame() { return myGame;}
+    public static MyGame GetGame() { return myGame; }
     static void Main()
     {
         myGame = new MyGame();
@@ -17,9 +17,9 @@ public class MyGame : Game
 
     public static List<Planet> planets;
 
-
-    Planet planet;
-    public static Player player;
+    public Player player;
+    public PlayerCamera camera;
+    Camera UICamera;
 
     UI UI;
 
@@ -27,38 +27,30 @@ public class MyGame : Game
     {
         planets = new List<Planet>();
 
-        /*
-        planet = new Planet(100, 1);
-        new Planet(70+(float)random.NextDouble()*150, 1);
-        new Planet(70 + (float)random.NextDouble() * 150, 1);
-        new Planet(70 + (float)random.NextDouble() * 150, 1);
-        */
-        //foreach (Planet p in planets) { AddChild(p); }
-
-        new Planet("data/map/Large Planet.png", 1, 1, new TiledMapParser.TiledObject());
-
-        foreach (Planet planet in planets) { AddChild(planet); }
-
         UI = new UI();
+        UI.SetXY(-2000, -2000);
         AddChild(UI);
+
+        UICamera = new Camera(0,0,1920,1080,false);
+        UICamera.SetXY(-2000, -2000);
+        AddChild(UICamera);
     }
 
     void Update()
     {
         if (!LevelHandler.levelLoaded)
         {
-            //LevelHandler.LoadScene("data/map/TestPrototype.tmx");
-            //LevelHandler.LoadScene("data/map/TiledTest.tmx");
+            LevelHandler.LoadScene("data/map/TestPrototype.tmx");
         }
 
-        if (player == null)
+        if (camera == null)
         {
-            new Player("data/map/1 tile objects_character_small_astroid_key.png", 1,1,new TiledMapParser.TiledObject());
+            camera = new PlayerCamera(0,0,1920,1080,player);
+            AddChild(camera);
         }
+        //SetChildIndex(UICamera, 0);
 
         Vec2CollisionManager.UpdateOldPositions();
-
-        //planet.gCollider._collider._position = new Vec2(Input.mouseX, Input.mouseY);
 
         Vec2GravityHandler.handleGravity();
 
@@ -66,11 +58,13 @@ public class MyGame : Game
         Vec2CollisionManager.HandleCollisions();
 
         player.Step();
+        camera.Step();
 
-        foreach (Planet p in planets) { p.UpdateScreenPosition(); }
-
+        foreach (Planet p in planets)
+        {
+            p.UpdateScreenPosition();
+        }
         player.UpdateScreenPosition();
-        //objDraw.Ellipse(objDraw.width/2, objDraw.height/2, objDraw.width, objDraw.height);
 
         UI.Draw();
 

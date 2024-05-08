@@ -1,28 +1,28 @@
 ﻿using GXPEngine;
 
-public class PlayerCamera { }/* : Camera
+public class PlayerCamera : Camera
 {
-    HoverCraft followCraft;
+    Player player;
 
     public Vec2 _position;
     public Vec2 vecRotation;
-    public PlayerCamera(int windowX, int windowY, int windowWidth, int windowHeight, HoverCraft pFollowCraft) : base (windowX, windowY, windowWidth, windowHeight, true)
+    public PlayerCamera(int windowX, int windowY, int windowWidth, int windowHeight, Player pPlayer) : base (windowX, windowY, windowWidth, windowHeight, true)
     {
-        followCraft = pFollowCraft;
+        player = pPlayer;
     }
 
     void UpdateScreenPosition()
     {
         x = _position.x; y = _position.y;
-        rotation = vecRotation.GetAngleDegrees();
+        rotation = Settings.cameraRotation ? vecRotation.GetAngleDegrees()-90 : 0;
     }
 
-    public void Step(bool rotation = true)
+    public void Step()
     {
-        _position.Lerp(followCraft._collider._position+(followCraft._collider._velocity *10), 0.2f);
-        if (rotation) vecRotation.Lerp(followCraft.vecRotation, 0.06f);
+        _position.Lerp(player.gCollider._collider._position+(player.gCollider._collider._velocity *10), 0.2f);
+        if (Settings.cameraRotation) vecRotation.Lerp(player.vecRotation, 0.06f);
         else vecRotation = Vec2.GetUnitVectorDeg(0);
 
         UpdateScreenPosition();
     }
-}*/
+}

@@ -192,7 +192,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="5" name="Objects">
+ <objectgroup id="5" name="Objects" offsetx="36.9344" offsety="99.723">
   <object id="5" name="Player" type="Player" gid="26" x="352" y="2117" width="64" height="64">
    <properties>
     <property name="radius" type="float" value="32"/>

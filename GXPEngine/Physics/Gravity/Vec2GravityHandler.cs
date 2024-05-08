@@ -20,8 +20,13 @@ public static class Vec2GravityHandler
                 float distance = direction.Length();
                 float forceMagnitude = (Settings.gravitationalConstant * atractor._collider.mass * obj._collider.mass) / Mathf.Pow(distance, 2);
                 Vec2 force = direction.Normalized() * forceMagnitude;
-
                 obj._collider._velocity += force/obj._collider.mass;
+                if (((Vec2BallCollider)obj._collider).radius == 32 /*|| ((Vec2BallCollider)atractor._collider).radius == 32*/)
+                {
+                    //Console.WriteLine(forceMagnitude + " / " + force);
+                   // Console.WriteLine(obj._collider._velocity);
+                }
+
             }
         }
     }
