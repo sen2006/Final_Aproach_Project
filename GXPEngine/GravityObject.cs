@@ -25,6 +25,7 @@ public class GravityObject : GameObject
     {
         Planet nearestPlanet = FindNearestPlanet();
         Vec2Collider colider = gCollider._collider;
+        if (nearestPlanet == null) return;
         Vec2Collider planetColider = nearestPlanet.gCollider._collider;
         if (Vec2PhysicsCalculations.TimeOfImpactBall(colider._velocity, colider._position, colider.GetOldPosition(), planetColider._position, radius, nearestPlanet.radius) < 0.0001f ||
             (colider._position.distance(planetColider._position)-(radius+nearestPlanet.radius)) <= 0.000001f)

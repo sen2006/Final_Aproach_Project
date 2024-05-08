@@ -4,11 +4,16 @@ using System;
 public class Planet : GravityObject
 {
     EasyDraw easyDraw;
-    public Planet (Vec2 position, float radius, float density = 1, bool stationary = true) : base(position, radius, density, stationary)
+    public Planet (float radius, float density = 1, bool stationary = true) : base(new Vec2(0, 0), radius, density, stationary)
     {
+        x = (float)MyGame.random.NextDouble() * 1920;
+        y = (float)MyGame.random.NextDouble() * 1080;
+
+
+
+        gCollider._collider._position = new Vec2(x,y);
         easyDraw = new EasyDraw(Mathf.Ceiling(radius) * 2, Mathf.Ceiling(radius) * 2);
         easyDraw.SetOrigin(radius, radius);
-
         MyGame.planets.Add(this);
     }
 

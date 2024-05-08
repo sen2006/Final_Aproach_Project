@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LevelHandler.cs" />
     <Compile Include="Physics\Collisions\Vec2Collider.cs" />
     <Compile Include="Physics\Collisions\Vec2Collision.cs" />
     <Compile Include="Physics\Collisions\Vec2CollisionManager.cs" />
@@ -49,8 +50,9 @@
     <Compile Include="GravityObject.cs" />
     <Compile Include="Physics\Gravity\Vec2GravityCollider.cs" />
     <Compile Include="Physics\Gravity\Vec2GravityHandler.cs" />
-    <Compile Include="Player.cs" />
-    <Compile Include="PlayerCamera.cs" />
+    <Compile Include="UI.cs" />
+    <Compile Include="Player\Player.cs" />
+    <Compile Include="Player\PlayerCamera.cs" />
     <Compile Include="Physics\Collisions\Vec2PhysicsCalculations.cs" />
     <Compile Include="GXPEngine\AddOns\Gizmos.cs" />
     <Compile Include="GXPEngine\AddOns\SpriteBatch.cs" />

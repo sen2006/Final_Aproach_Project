@@ -7,6 +7,7 @@ using System.Net.WebSockets;
 public class MyGame : Game
 {
     public static MyGame myGame;
+    public static Random random = new Random();
     public static MyGame GetGame() { return myGame;}
     static void Main()
     {
@@ -20,21 +21,27 @@ public class MyGame : Game
     Planet planet;
     Player obj;
 
+    UI UI;
+
     public MyGame() : base(1920, 1080, false, true)
     {
         planets = new List<Planet>();
 
-        planet = new Planet(new Vec2(600, 400), 100, 1);
-        new Planet(new Vec2(200, 600), 120, 1);
-        new Planet(new Vec2(1300, 300), 120, 1);
-        new Planet(new Vec2(600, 800), 120, 1);
-        new Planet(new Vec2(400, 1040), 120, 1);
+
+        planet = new Planet(100, 1);
+        new Planet(70+(float)random.NextDouble()*150, 1);
+        new Planet(70 + (float)random.NextDouble() * 150, 1);
+        new Planet(70 + (float)random.NextDouble() * 150, 1);
+        new Planet(70 + (float)random.NextDouble() * 150, 1);
 
 
-        obj = new Player(new Vec2(200, 400), 20);
+        obj = new Player(20);
         AddChild(obj);
 
         foreach (Planet p in planets) { AddChild(p); }
+
+        UI = new UI();
+        AddChild(UI);
     }
 
     void Update()
@@ -56,7 +63,7 @@ public class MyGame : Game
         obj.UpdateScreenPosition();
         //objDraw.Ellipse(objDraw.width/2, objDraw.height/2, objDraw.width, objDraw.height);
 
-        
+        UI.Draw();
 
     }
 }
