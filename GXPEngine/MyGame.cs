@@ -19,7 +19,7 @@ public class MyGame : Game
 
 
     Planet planet;
-    Player obj;
+    public static Player player;
 
     UI UI;
 
@@ -27,18 +27,17 @@ public class MyGame : Game
     {
         planets = new List<Planet>();
 
-
+        /*
         planet = new Planet(100, 1);
         new Planet(70+(float)random.NextDouble()*150, 1);
         new Planet(70 + (float)random.NextDouble() * 150, 1);
         new Planet(70 + (float)random.NextDouble() * 150, 1);
-        new Planet(70 + (float)random.NextDouble() * 150, 1);
+        */
+        //foreach (Planet p in planets) { AddChild(p); }
 
+        new Planet("data/map/Large Planet.png", 1, 1, new TiledMapParser.TiledObject());
 
-        obj = new Player(20);
-        AddChild(obj);
-
-        foreach (Planet p in planets) { AddChild(p); }
+        foreach (Planet planet in planets) { AddChild(planet); }
 
         UI = new UI();
         AddChild(UI);
@@ -46,21 +45,31 @@ public class MyGame : Game
 
     void Update()
     {
+        if (!LevelHandler.levelLoaded)
+        {
+            //LevelHandler.LoadScene("data/map/TestPrototype.tmx");
+            //LevelHandler.LoadScene("data/map/TiledTest.tmx");
+        }
+
+        if (player == null)
+        {
+            new Player("data/map/1 tile objects_character_small_astroid_key.png", 1,1,new TiledMapParser.TiledObject());
+        }
 
         Vec2CollisionManager.UpdateOldPositions();
 
-        planet.gCollider._collider._position = new Vec2(Input.mouseX, Input.mouseY);
+        //planet.gCollider._collider._position = new Vec2(Input.mouseX, Input.mouseY);
 
         Vec2GravityHandler.handleGravity();
 
         // requests the collision manager to resolve all collisions
         Vec2CollisionManager.HandleCollisions();
 
-        obj.Step();
+        player.Step();
 
         foreach (Planet p in planets) { p.UpdateScreenPosition(); }
 
-        obj.UpdateScreenPosition();
+        player.UpdateScreenPosition();
         //objDraw.Ellipse(objDraw.width/2, objDraw.height/2, objDraw.width, objDraw.height);
 
         UI.Draw();

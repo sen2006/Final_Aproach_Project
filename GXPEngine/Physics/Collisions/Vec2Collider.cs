@@ -22,6 +22,8 @@ public class Vec2Collider : GameObject // a master Class, not for use in the col
     public bool IsSolid() { return solid; }
     public bool IsStationary() {  return stationary; }
 
+    public void SetStationary(bool newVal) { stationary = newVal; }
+
     public void UpdateOldPosition ()
     {
         _oldPosition = _position;

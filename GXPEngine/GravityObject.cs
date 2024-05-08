@@ -1,15 +1,16 @@
 ﻿using GXPEngine;
 using System;
+using TiledMapParser;
 
-public class GravityObject : GameObject
+public class GravityObject : AnimationSprite
 {
     public float radius;
     public Vec2GravityCollider gCollider;
-    public GravityObject(Vec2 position, float radius, float density = 1, bool stationary = false) : base()
+    public GravityObject(string filename, int cols, int rows, TiledObject obj) : base (filename, cols, rows)
     {
-        gCollider = new Vec2GravityCollider(new Vec2BallCollider(radius, density, stationary));
-        gCollider._collider._position = position;
-        this.radius = radius;
+        gCollider = new Vec2GravityCollider(new Vec2BallCollider(radius, obj.GetFloatProperty("density",1), obj.GetBoolProperty("stationary", true)));
+        gCollider._collider._position = new Vec2(x,y);
+        this.radius = obj.GetFloatProperty("radius", 128);
     }
 
     public virtual void Draw() { }

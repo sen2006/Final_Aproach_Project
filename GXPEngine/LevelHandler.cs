@@ -5,9 +5,10 @@ using TiledMapParser;
 
 public static class LevelHandler
 {
+    public static bool levelLoaded = false;
+
     public static void LoadScene(string filename, bool loadLights = false, bool loadVignette = false, bool setColors = true)
     {
-        UnloadScene();
         TiledLoader loader = new TiledLoader(filename);
         loader.autoInstance = true;
 
@@ -83,14 +84,16 @@ public static class LevelHandler
         {
             loader.LoadObjectGroups(3); // vignette (multiply)
         }
+        levelLoaded = true;
     }
 
-    static void UnloadScene()
+    public static void UnloadScene()
     {
         foreach (GameObject child in MyGame.GetGame().GetChildren())
         {
             child.LateDestroy();
         }
+        levelLoaded = false;
 
     }
 }

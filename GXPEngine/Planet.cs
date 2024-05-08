@@ -1,10 +1,11 @@
 ﻿using GXPEngine;
 using System;
+using TiledMapParser;
 
 public class Planet : GravityObject
 {
     EasyDraw easyDraw;
-    public Planet (float radius, float density = 1, bool stationary = true) : base(new Vec2(0, 0), radius, density, stationary)
+    public Planet (string filename, int cols, int rows, TiledObject obj) : base(filename, cols, rows, obj)
     {
         x = (float)MyGame.random.NextDouble() * 1920;
         y = (float)MyGame.random.NextDouble() * 1080;

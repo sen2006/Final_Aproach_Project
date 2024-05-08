@@ -1,6 +1,7 @@
 ﻿using GXPEngine;
 using GXPEngine.Core;
 using System;
+using TiledMapParser;
 public class Player : GravityObject
 {
     Vec2 vecRotation = new Vec2();
@@ -12,11 +13,16 @@ public class Player : GravityObject
     EasyDraw easyDraw;
 
     public static float fuel = Settings.maxFuel;
-    public Player(float radius, float density = 1) : base(new Vec2(0,0), radius, density)
+    public Player(string filename, int cols, int rows, TiledObject obj) : base(filename, cols, rows, obj)
     {
-        gCollider._collider._position = new Vec2(x,y);
         easyDraw = new EasyDraw(Mathf.Ceiling(radius) * 2, Mathf.Ceiling(radius) * 2);
         easyDraw.SetOrigin(radius, radius);
+
+        MyGame.player = this;
+        MyGame.GetGame().AddChild(this);
+
+        gCollider._collider.SetStationary(obj.GetBoolProperty("stationary", false));
+        ((Vec2BallCollider)gCollider._collider).radius = 20;
     }
 
     public override void Step()
