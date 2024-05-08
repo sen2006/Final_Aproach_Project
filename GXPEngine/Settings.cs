@@ -10,6 +10,9 @@ public static class Settings
     internal readonly static float gravitationalConstant = .08f;
     internal readonly static float maxVelocity = 8f;
     internal readonly static float minGravityToRotate = 30f;
+
+    // player
     internal readonly static float boosterPower = 4;
+    internal readonly static float walkSpeed = 2;
 }
 

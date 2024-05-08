@@ -29,11 +29,13 @@ public class GravityObject : GameObject
         if (Vec2PhysicsCalculations.TimeOfImpactBall(colider._velocity, colider._position, colider.GetOldPosition(), planetColider._position, radius, nearestPlanet.radius) < 0.0001f ||
             (colider._position.distance(planetColider._position)-(radius+nearestPlanet.radius)) <= 0.000001f)
         {
-            float aproachSpeed = colider._velocity.Normalized().Dot((planetColider._position - colider._position).Normalized());
+            float aproachSpeed = colider._velocity.Dot((planetColider._position - colider._position).Normalized());
+
+            Console.WriteLine(aproachSpeed);
 
             Vec2 planetAngle = planetColider._position - colider._position;
 
-            colider._position = planetColider._position + (planetAngle.Normalized() * -(radius + nearestPlanet.radius));
+            if (aproachSpeed>0) colider._position = planetColider._position + (planetAngle.Normalized() * -(radius + nearestPlanet.radius));
 
             colider._velocity = new Vec2(0, 0);
         }

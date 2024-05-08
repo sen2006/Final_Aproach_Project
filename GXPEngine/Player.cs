@@ -29,15 +29,30 @@ public class Player : GravityObject
             Console.WriteLine(gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius));
 
             // not run more than once
-            if (true || (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= 5f))
+            if (Input.GetKeyDown(Key.SPACE) && (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f))
             {
 
                 Vec2 planetAngle = nearestPlanet.gCollider._collider._position - gCollider._collider._position;
                 gCollider._collider._position = nearestPlanet.gCollider._collider._position + (planetAngle.Normalized() * -(2.5f+radius+nearestPlanet.radius));
-                gCollider._collider._velocity = planetAngle.Normalized() * -10;
+                gCollider._collider._velocity = planetAngle.Normalized() * -50;
                 Console.WriteLine("it worked");
             }
             gCollider._collider._velocity.Lerp(vecRotation * Settings.boosterPower * (1 + (nearestPlanetForce * .03f)) * -1, .01f);
+        }
+        if (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f) {
+            if (Input.GetKey(Key.D))
+            {
+                Vec2 targetMovament = targetRotation.Normalized() * Settings.walkSpeed;
+                targetMovament.RotateDegrees(-90);
+                gCollider._collider._position += targetMovament;
+            }
+
+            if (Input.GetKey(Key.A))
+            {
+                Vec2 targetMovament = targetRotation.Normalized() * Settings.walkSpeed;
+                targetMovament.RotateDegrees(90);
+                gCollider._collider._position += targetMovament;
+            }
         }
     }
 

@@ -19,20 +19,22 @@ public class MyGame : Game
 
     Planet planet;
     Player obj;
-    EasyDraw objDraw;
 
     public MyGame() : base(1920, 1080, false, true)
     {
         planets = new List<Planet>();
 
         planet = new Planet(new Vec2(600, 400), 100, 1);
-        AddChild(planet);
+        new Planet(new Vec2(200, 600), 120, 1);
+        new Planet(new Vec2(1300, 300), 120, 1);
+        new Planet(new Vec2(600, 800), 120, 1);
+        new Planet(new Vec2(400, 1040), 120, 1);
+
 
         obj = new Player(new Vec2(200, 400), 20);
         AddChild(obj);
-        objDraw = new EasyDraw(60,60);
-        objDraw.SetOrigin(30, 30);
-        AddChild(objDraw);
+
+        foreach (Planet p in planets) { AddChild(p); }
     }
 
     void Update()
@@ -49,10 +51,9 @@ public class MyGame : Game
 
         obj.Step();
 
-        planet.UpdateScreenPosition();
-        obj.UpdateScreenPosition();
+        foreach (Planet p in planets) { p.UpdateScreenPosition(); }
 
-        objDraw.SetXY(obj.x, obj.y);
+        obj.UpdateScreenPosition();
         //objDraw.Ellipse(objDraw.width/2, objDraw.height/2, objDraw.width, objDraw.height);
 
         
