@@ -12,7 +12,7 @@ public class GravityObject : AnimationSprite
 
         gCollider = new Vec2GravityCollider(new Vec2BallCollider(radius, obj.GetFloatProperty("density", 1), obj.GetBoolProperty("stationary", true)));
 
-        gCollider._collider._position = new Vec2(obj.X + radius, obj.Y + radius);
+        gCollider._collider._position = new Vec2(obj.X + radius, obj.Y - radius);
 
         SetOrigin(radius, radius);
 

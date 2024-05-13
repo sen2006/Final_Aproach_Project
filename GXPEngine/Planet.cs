@@ -11,7 +11,6 @@ public class Planet : GravityObject
         //y = (float)MyGame.random.NextDouble() * 1080;
 
 
-        gCollider._collider._position = new Vec2(x-radius,y-radius);
         easyDraw = new EasyDraw(Mathf.Ceiling(radius*2) * 2, Mathf.Ceiling(radius*2) * 2);
         easyDraw.SetOrigin(radius*2, radius*2);
         MyGame.planets.Add(this);

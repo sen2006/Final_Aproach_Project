@@ -48,7 +48,7 @@ public class MyGame : Game
             camera = new PlayerCamera(0,0,1920,1080,player);
             AddChild(camera);
         }
-        //SetChildIndex(UICamera, 0);
+        SetChildIndex(UICamera, 0);
 
         Vec2CollisionManager.UpdateOldPositions();
 
