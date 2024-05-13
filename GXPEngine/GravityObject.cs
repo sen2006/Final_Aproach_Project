@@ -40,7 +40,7 @@ public class GravityObject : AnimationSprite
         {
             float aproachSpeed = colider._velocity.Dot((planetColider._position - colider._position).Normalized());
 
-            Console.WriteLine(aproachSpeed);
+            //Console.WriteLine(aproachSpeed);
 
             Vec2 planetAngle = planetColider._position - colider._position;
 

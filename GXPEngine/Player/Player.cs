@@ -21,13 +21,14 @@ public class Player : GravityObject
         MyGame.GetGame().player = this;
         MyGame.GetGame().AddChild(this);
 
-        Console.WriteLine("player loaded at " + x + "-" + y + " stationary:" + gCollider._collider.IsStationary());
+        Console.WriteLine("Player created at (" + x + "," + y + ") stationary:" + gCollider._collider.IsStationary());
     }
 
     public override void Step()
     {
         refillFuel();
         handleInputs();
+        rotateToNearestPlanet();
         base.Step();
     }
 
@@ -43,23 +44,13 @@ public class Player : GravityObject
     {
         if (Input.GetKey(Key.W))
         {
+            // JUMP
             if (fuel > 0)
             {
-                // not run more than once
                 if (Input.GetKeyDown(Key.W) && (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f))
                 {
-
                     Vec2 planetAngle = nearestPlanet.gCollider._collider._position - gCollider._collider._position;
                     gCollider._collider._position = nearestPlanet.gCollider._collider._position + (planetAngle.Normalized() * -(2.5f + radius + nearestPlanet.radius));
-                    /*gCollider._collider._velocity += planetAngle.Normalized() * -Settings.maxVelocity;
-                    if (Input.GetKey(Key.D))
-                    {
-                        gCollider._collider._velocity.RotateDegrees(60);
-                    }
-                    if (Input.GetKey(Key.A))
-                    {
-                        gCollider._collider._velocity.RotateDegrees(-60);
-                    }*/
                 }
                 gCollider._collider._velocity.Lerp(vecRotation * Settings.boosterPower * (1 + (nearestPlanetForce * .03f)) * -1, .01f);
             }
@@ -67,12 +58,12 @@ public class Player : GravityObject
         }
         if (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f)
         {
+            // move LEFT and RIGHT if player is on planet
             if (Input.GetKey(Key.D))
             {
                 Vec2 targetMovament = targetRotation.Normalized() * Settings.walkSpeed;
                 targetMovament.RotateDegrees(-90);
                 gCollider._collider._position += targetMovament;
-                //gCollider._collider._velocity += targetMovament;
             }
 
             if (Input.GetKey(Key.A))
@@ -80,7 +71,6 @@ public class Player : GravityObject
                 Vec2 targetMovament = targetRotation.Normalized() * Settings.walkSpeed;
                 targetMovament.RotateDegrees(90);
                 gCollider._collider._position += targetMovament;
-                //gCollider._collider._velocity += targetMovament;
             }
         }
     }
@@ -88,19 +78,19 @@ public class Player : GravityObject
     public override void UpdateScreenPosition()
     {
         base.UpdateScreenPosition();
-        rotateToNearestPlanet();
+        rotation = vecRotation.GetAngleDegrees() - 90;
 
-        //Console.WriteLine("V:"+gCollider._collider._velocity);
-        //Console.WriteLine("P:"+gCollider._collider._position);
+        //Console.WriteLine("player V:"+gCollider._collider._velocity);
+        //Console.WriteLine("player P:"+gCollider._collider._position);
     }
 
     public override void Draw()
     {
-        //if (!HasChild(easyDraw)) AddChild(easyDraw);
+        /*if (!HasChild(easyDraw)) AddChild(easyDraw);
         easyDraw.Fill(255, 255, 255);
         easyDraw.StrokeWeight(1);
         easyDraw.Stroke(255, 0, 0);
-        easyDraw.Rect(radius, radius, radius * 2, radius * 2);
+        easyDraw.Rect(radius, radius, radius * 2, radius * 2);*/
     }
 
     public void rotateToNearestPlanet()
@@ -117,8 +107,6 @@ public class Player : GravityObject
             nearestPlanetForce = forceMagnitude;
             targetRotation = (nearestPlanet.gCollider._collider._position - gCollider._collider._position).Normalized();
             vecRotation.Lerp(targetRotation, (distance - (radius + nearestPlanet.radius) <= 0.0000001f) ? .1f : .0025f + .025f * (forceMagnitude / 150));
-
-            rotation = vecRotation.GetAngleDegrees() - 90;
         }
     }
 

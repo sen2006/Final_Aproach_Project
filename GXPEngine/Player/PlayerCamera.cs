@@ -1,4 +1,5 @@
 ﻿using GXPEngine;
+using System;
 
 public class PlayerCamera : Camera
 {
@@ -11,7 +12,7 @@ public class PlayerCamera : Camera
         player = pPlayer;
     }
 
-    void UpdateScreenPosition()
+    public void UpdateScreenPosition()
     {
         x = _position.x; y = _position.y;
         rotation = Settings.cameraRotation ? vecRotation.GetAngleDegrees()-90 : 0;
@@ -22,7 +23,5 @@ public class PlayerCamera : Camera
         _position.Lerp(player.gCollider._collider._position+(player.gCollider._collider._velocity *10), 0.2f);
         if (Settings.cameraRotation) vecRotation.Lerp(player.vecRotation, 0.06f);
         else vecRotation = Vec2.GetUnitVectorDeg(0);
-
-        UpdateScreenPosition();
     }
 }

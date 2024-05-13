@@ -9,26 +9,11 @@ public static class LevelHandler
 
     public static void LoadScene(string filename, bool loadLights = false, bool loadVignette = false, bool setColors = true)
     {
+        Console.WriteLine("-- Starting Level loading (" + filename + ")");
         TiledLoader loader = new TiledLoader(filename);
         loader.autoInstance = true;
 
-        // ------------- Convention (render order):
-
-        // image layer 1 = background, lit
-        // tile layer 0: normal tiles, lit (=main layer)
-        // object layer 0: normal objects (e.g. player), rendered with main layer
-
-        // object layer 1: lights. BlendMode.LIGHTING
-
-        // image layer 0 = background, unlit: BlendMode.FILLEMPTY (+rendered after normal lights!)
-
-        // object layer 2: "volumetric" lights. BlendMode.ADDITIVE
-
-        // tile layer 1: foreground tiles, unlit (=rendered after lights)
-
-        // object layer 3: darkening (vignette). BlendMode.MULTIPLY
-
-        // background, lit:
+        Console.WriteLine("- Loading Background");
         loader.addColliders = false;
         Pivot background = new Pivot();
         MyGame.GetGame().AddChild(background);
@@ -39,6 +24,7 @@ public static class LevelHandler
             ((Sprite)background.GetChildren()[0]).SetColor(0.5f, 0.5f, 0.5f);
         }
 
+        Console.WriteLine("- Loading main layer");
         // main layer, lit:
         Pivot mainlayer = new Pivot();
         MyGame.GetGame().AddChild(mainlayer);
@@ -51,9 +37,11 @@ public static class LevelHandler
         // lights:
         if (loadLights)
         {
+            Console.WriteLine("- Loading lights layer");
             loader.LoadObjectGroups(1); // contains normal lights
         }
 
+        Console.WriteLine("- Loading background unlit");
         // background, unlit:
         Pivot unlit = new Pivot();
         MyGame.GetGame().AddChild(unlit);
@@ -64,9 +52,11 @@ public static class LevelHandler
         loader.rootObject = MyGame.GetGame();
         if (loadLights)
         {
+            Console.WriteLine("- Loading volumetriv lights");
             loader.LoadObjectGroups(2); // "volumetric" lighting (additive)
         }
 
+        Console.WriteLine("- Loading foreground");
         // foreground:
         // (A SpriteBatch is used to easily set the color of all sprites with one command - see SpriteBatch.cs for more info)
         SpriteBatch foreground = new SpriteBatch();
@@ -82,19 +72,50 @@ public static class LevelHandler
         loader.rootObject = MyGame.GetGame();
         if (loadVignette)
         {
+            Console.WriteLine("- Loading vignette");
             loader.LoadObjectGroups(3); // vignette (multiply)
         }
         levelLoaded = true;
+        Console.WriteLine("-- Finished loading level");
     }
 
     public static void UnloadScene()
     {
+        Console.WriteLine("-- Destroying level");
+
+        Console.WriteLine("- Destroying children of MyGame");
         foreach (GameObject child in MyGame.GetGame().GetChildren())
         {
+            Console.WriteLine("Destroying: "+child);
             child.LateDestroy();
         }
-        levelLoaded = false;
 
+        MyGame game = MyGame.GetGame();
+
+        Console.WriteLine("- Clearing planet list");
+        MyGame.planets.Clear();
+
+        Console.WriteLine("- Clearing collicer list");
+        Vec2CollisionManager.colliders.Clear();
+
+        Console.WriteLine("- Clearing gravity collicer list");
+        Vec2GravityHandler.gravityObjects.Clear();
+
+
+        Console.WriteLine("- Setting player to NULL");
+        game.player = null;
+
+        Console.WriteLine("- Setting camera to NULL");
+        game.camera = null;
+
+        Console.WriteLine("- Setting UI to NULL");
+        game.UI = null;
+
+        Console.WriteLine("- Setting UI-camera to NULL");
+        game.UICamera = null;
+
+        levelLoaded = false;
+        Console.WriteLine("-- Finished destroying level");
     }
 }
 
