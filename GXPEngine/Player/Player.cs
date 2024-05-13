@@ -41,12 +41,12 @@ public class Player : GravityObject
 
     public void handleInputs()
     {
-        if (Input.GetKey(Key.SPACE))
+        if (Input.GetKey(Key.W))
         {
             if (fuel > 0)
             {
                 // not run more than once
-                if (Input.GetKeyDown(Key.SPACE) && (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f))
+                if (Input.GetKeyDown(Key.W) && (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f))
                 {
 
                     Vec2 planetAngle = nearestPlanet.gCollider._collider._position - gCollider._collider._position;
