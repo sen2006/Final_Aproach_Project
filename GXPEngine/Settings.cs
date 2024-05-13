@@ -10,6 +10,9 @@ public static class Settings
     internal readonly static float gravitationalConstant = .03f;
     internal readonly static float maxVelocity = 100f;
     internal readonly static float minGravityToRotate = 1f;
+    internal readonly static float defauldPlanetDensity = 1f;
+    internal readonly static float defauldPlayerDensity = 1.1f;
+
 
     // player
     internal readonly static float fuelUsage = .1f;

@@ -1,5 +1,4 @@
 ﻿using GXPEngine;
-using GXPEngine.Core;
 using System;
 using TiledMapParser;
 public class Player : GravityObject
@@ -12,9 +11,13 @@ public class Player : GravityObject
 
     EasyDraw easyDraw;
 
-    public static float fuel = Settings.maxFuel;
+    bool wasJump = false;
+
+    public float fuel = Settings.maxFuel;
     public Player(string filename, int cols, int rows, TiledObject obj) : base(filename, cols, rows, obj)
     {
+        gCollider._collider.mass = Mathf.PI * Mathf.Pow(radius, 2) * obj.GetFloatProperty("density", Settings.defauldPlayerDensity);
+
         easyDraw = new EasyDraw(Mathf.Ceiling(radius) * 2, Mathf.Ceiling(radius) * 2);
         easyDraw.SetOrigin(radius, radius);
 
@@ -42,20 +45,21 @@ public class Player : GravityObject
 
     public void handleInputs()
     {
-        if (Input.GetKey(Key.W))
+        if (Input.GetKey(Key.W) || Input.GetKey(Key.SPACE))
         {
             // JUMP
             if (fuel > 0)
             {
-                if (Input.GetKeyDown(Key.W) && (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f))
+                if (!wasJump && (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f))
                 {
                     Vec2 planetAngle = nearestPlanet.gCollider._collider._position - gCollider._collider._position;
                     gCollider._collider._position = nearestPlanet.gCollider._collider._position + (planetAngle.Normalized() * -(2.5f + radius + nearestPlanet.radius));
+                    wasJump = true;
                 }
                 gCollider._collider._velocity.Lerp(vecRotation * Settings.boosterPower * (1 + (nearestPlanetForce * .03f)) * -1, .01f);
             }
             fuel = Mathf.Max(fuel - Settings.fuelUsage, 0);
-        }
+        } else wasJump = false;
         if (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f)
         {
             // move LEFT and RIGHT if player is on planet

@@ -10,6 +10,7 @@ public class Planet : GravityObject
         //x = (float)MyGame.random.NextDouble() * 1920;
         //y = (float)MyGame.random.NextDouble() * 1080;
 
+        gCollider._collider.mass = Mathf.PI * Mathf.Pow(radius, 2) * obj.GetFloatProperty("density", Settings.defauldPlanetDensity);
 
         easyDraw = new EasyDraw(Mathf.Ceiling(radius * 2) * 2, Mathf.Ceiling(radius * 2) * 2);
         easyDraw.SetOrigin(radius * 2, radius * 2);
