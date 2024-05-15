@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|solutionrelative:gxpengine\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|c:\\users\\finns\\desktop\\final_aproach_project\\gxpengine\\mygame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|C:\\Users\\FinnS\\Desktop\\Final_Aproach_Project\\gxpengine\\mygame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B5126D4C-7FE0-4552-BC8C-E68D529C22B2}|GXPEngine\\GXPEngine.csproj|solutionrelative:gxpengine\\mygame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -63,8 +63,7 @@
               "ViewState": "AQIAAAwAAAAAAAAAAAAowBUAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-12T12:39:17.239Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
