@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="64" tileheight="64" infinite="0" nextlayerid="13" nextobjectid="76">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="64" tileheight="64" infinite="0" nextlayerid="10" nextobjectid="89">
  <tileset firstgid="1" name="1x1" tilewidth="64" tileheight="64" tilecount="3" columns="3">
   <image source="1 tile objects_character_small_astroid_key.png" width="192" height="64"/>
  </tileset>
- <tileset firstgid="4" name="Clear" tilewidth="64" tileheight="64" tilecount="1" columns="1">
-  <image source="Button.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="5" name="Large Planet" tilewidth="448" tileheight="448" tilecount="1" columns="1">
-  <image source="Large Planet.png" width="448" height="448"/>
- </tileset>
- <tileset firstgid="6" name="Medium Planet" tilewidth="256" tileheight="256" tilecount="1" columns="1">
-  <image source="Medium Planet.png" width="256" height="256"/>
- </tileset>
- <tileset firstgid="7" name="Small Planet" tilewidth="192" tileheight="192" tilecount="1" columns="1">
+ <tileset firstgid="4" name="small_planet" tilewidth="192" tileheight="192" tilecount="1" columns="1">
   <image source="Small Planet.png" width="192" height="192"/>
  </tileset>
- <imagelayer id="11" name="Background" repeatx="1" repeaty="1">
-  <image source="background 1 tile.png" width="1920" height="1080"/>
+ <tileset firstgid="5" name="medium_planet" tilewidth="256" tileheight="256" tilecount="1" columns="1">
+  <image source="Medium Planet.png" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="6" name="large_planet" tilewidth="448" tileheight="448" tilecount="1" columns="1">
+  <image source="Large Planet.png" width="448" height="448"/>
+ </tileset>
+ <tileset firstgid="7" name="big_astroid" tilewidth="128" tileheight="128" tilecount="1" columns="1">
+  <image source="Large Astroid.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="8" name="1x2_astroid" tilewidth="128" tileheight="64" tilecount="1" columns="1">
+  <image source="2x1 Astroid.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="9" name="clear" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+  <image source="Button.png" width="64" height="64"/>
+ </tileset>
+ <imagelayer id="3" name="background">
+  <image source="1 tile objects_character_small_astroid_key.png" width="192" height="64"/>
  </imagelayer>
- <imagelayer id="12" name="Middleground" repeatx="1" repeaty="1">
-  <image source="background 1 tile.png" width="1920" height="1080"/>
+ <imagelayer id="4" name="middleground">
+  <image source="1 tile objects_character_small_astroid_key.png" width="192" height="64"/>
  </imagelayer>
  <layer id="1" name="MainLayer" width="50" height="50">
   <data encoding="csv">
@@ -75,7 +81,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="10" name="Foreground" width="50" height="50">
+ <layer id="5" name="Foreground" width="50" height="50">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -129,36 +135,114 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="5" name="Objects" offsetx="36.9344" offsety="99.723">
-  <object id="66" type="Planet" gid="5" x="515.066" y="2828.28" width="448" height="448"/>
-  <object id="67" name="player" type="Player" gid="4" x="691.066" y="2332.28" width="64" height="64">
+ <objectgroup id="6" name="Objects">
+  <object id="35" type="Planet" gid="4" x="832" y="1984" width="192" height="192">
    <properties>
-    <property name="radius" type="float" value="32"/>
+    <property name="density" value="3,5"/>
+    <property name="radius" type="float" value="96"/>
    </properties>
   </object>
-  <object id="68" name="key 1" type="KeyCollectible" gid="3" x="911.066" y="2439.28" width="64" height="64">
+  <object id="38" type="Planet" gid="5" x="2816" y="384" width="256" height="256">
    <properties>
-    <property name="ID" type="int" value="1"/>
+    <property name="density" value="4,5"/>
+    <property name="radius" type="float" value="128"/>
    </properties>
   </object>
-  <object id="72" name="key 2" type="KeyCollectible" gid="3" x="949.066" y="2735.28" width="64" height="64">
+  <object id="39" type="Planet" gid="6" x="0" y="3200" width="448" height="448">
    <properties>
-    <property name="ID" type="int" value="2"/>
+    <property name="density" value="5"/>
+    <property name="radius" type="float" value="224"/>
    </properties>
   </object>
-  <object id="73" name="key 3" type="KeyCollectible" gid="3" x="583.066" y="2875.28" width="64" height="64">
+  <object id="40" type="Planet" gid="6" x="1344" y="1920" width="448" height="448">
    <properties>
-    <property name="ID" type="int" value="3"/>
+    <property name="density" value="5"/>
+    <property name="radius" type="float" value="224"/>
    </properties>
   </object>
-  <object id="74" name="key 4" type="KeyCollectible" gid="3" x="504.066" y="2445.28" width="64" height="64">
+  <object id="41" type="Planet" gid="6" x="192" y="576" width="448" height="448">
    <properties>
-    <property name="ID" type="int" value="4"/>
+    <property name="density" value="5"/>
+    <property name="radius" type="float" value="224"/>
    </properties>
   </object>
-  <object id="75" name="rocket" type="Rocket" gid="2" x="588.399" y="2415.61" width="64" height="64"/>
+  <object id="42" type="Planet" gid="4" x="2048" y="1600" width="192" height="192">
+   <properties>
+    <property name="density" value="3,5"/>
+    <property name="radius" type="float" value="96"/>
+   </properties>
+  </object>
+  <object id="43" type="Planet" gid="4" x="1216" y="448" width="192" height="192">
+   <properties>
+    <property name="density" value="3,5"/>
+    <property name="radius" type="float" value="96"/>
+   </properties>
+  </object>
+  <object id="44" type="Planet" gid="4" x="2240" y="640" width="192" height="192">
+   <properties>
+    <property name="density" value="3,5"/>
+    <property name="radius" type="float" value="96"/>
+   </properties>
+  </object>
+  <object id="45" type="Planet" gid="4" x="2176" y="2432" width="192" height="192">
+   <properties>
+    <property name="density" value="3,5"/>
+    <property name="radius" type="float" value="96"/>
+   </properties>
+  </object>
+  <object id="46" type="Planet" gid="5" x="448" y="2560" width="256" height="256">
+   <properties>
+    <property name="density" value="4,5"/>
+    <property name="radius" type="float" value="128"/>
+   </properties>
+  </object>
+  <object id="47" type="Planet" gid="5" x="2624" y="2816" width="256" height="256">
+   <properties>
+    <property name="density" value="4,5"/>
+    <property name="radius" type="float" value="128"/>
+   </properties>
+  </object>
+  <object id="49" gid="2" x="1152" y="384" width="64" height="64"/>
+  <object id="50" gid="2" x="1152" y="320" width="64" height="64"/>
+  <object id="51" gid="2" x="1152" y="256" width="64" height="64"/>
+  <object id="52" gid="2" x="1216" y="192" width="64" height="64"/>
+  <object id="53" gid="2" x="1280" y="192" width="64" height="64"/>
+  <object id="54" gid="2" x="1408" y="192" width="64" height="64"/>
+  <object id="55" gid="2" x="1344" y="192" width="64" height="64"/>
+  <object id="56" gid="2" x="1472" y="192" width="64" height="64"/>
+  <object id="57" gid="2" x="1536" y="192" width="64" height="64"/>
+  <object id="58" gid="2" x="1600" y="192" width="64" height="64"/>
+  <object id="59" gid="2" x="1600" y="256" width="64" height="64"/>
+  <object id="60" gid="2" x="1664" y="256" width="64" height="64"/>
+  <object id="61" gid="2" x="1664" y="320" width="64" height="64"/>
+  <object id="62" gid="2" x="1728" y="320" width="64" height="64"/>
+  <object id="63" gid="2" x="1728" y="384" width="64" height="64"/>
+  <object id="64" gid="2" x="1792" y="448" width="64" height="64"/>
+  <object id="65" gid="2" x="1792" y="512" width="64" height="64"/>
+  <object id="66" gid="2" x="1792" y="576" width="64" height="64"/>
+  <object id="67" gid="2" x="1152" y="448" width="64" height="64"/>
+  <object id="68" gid="2" x="1216" y="512" width="64" height="64"/>
+  <object id="69" gid="2" x="1280" y="512" width="64" height="64"/>
+  <object id="70" gid="2" x="1280" y="576" width="64" height="64"/>
+  <object id="71" gid="2" x="1344" y="576" width="64" height="64"/>
+  <object id="72" gid="2" x="1344" y="640" width="64" height="64"/>
+  <object id="73" gid="2" x="1472" y="640" width="64" height="64"/>
+  <object id="74" gid="2" x="1408" y="640" width="64" height="64"/>
+  <object id="75" gid="2" x="1536" y="640" width="64" height="64"/>
+  <object id="76" gid="2" x="1536" y="704" width="64" height="64"/>
+  <object id="77" gid="2" x="1792" y="640" width="64" height="64"/>
+  <object id="78" gid="2" x="1792" y="704" width="64" height="64"/>
+  <object id="79" gid="8" x="1600" y="896" width="128" height="64"/>
+  <object id="80" gid="2" x="576" y="832" width="64" height="64"/>
+  <object id="81" gid="2" x="1024" y="1024" width="64" height="64"/>
+  <object id="82" gid="2" x="960" y="1344" width="64" height="64"/>
+  <object id="83" gid="2" x="2368" y="1152" width="64" height="64"/>
+  <object id="84" gid="2" x="2816" y="768" width="64" height="64"/>
+  <object id="85" gid="2" x="2752" y="1920" width="64" height="64"/>
+  <object id="86" gid="2" x="1152" y="2688" width="64" height="64"/>
+  <object id="88" name="player" type="Player" gid="9" x="192" y="2720" width="64" height="64"/>
  </objectgroup>
- <objectgroup id="8" name="Lights"/>
- <objectgroup id="7" name="VolumetricLights"/>
- <objectgroup id="6" name="Vignette"/>
+ <objectgroup id="7" name="Lights"/>
+ <objectgroup id="8" name="VolumetricLights"/>
+ <objectgroup id="9" name="Vignette"/>
 </map>

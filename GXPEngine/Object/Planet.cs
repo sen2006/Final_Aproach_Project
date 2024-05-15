@@ -14,7 +14,7 @@ public class Planet : GravityObject
         easyDraw.SetOrigin(radius * 2, radius * 2);
         MyGame.planets.Add(this);
 
-        Console.WriteLine("Planet created at (" + x + "," + y + ") stationary:" + gCollider._collider.IsStationary());
+        Console.WriteLine("Planet created at (" + x + "," + y + ") stationary:" + gCollider._collider.IsStationary()+ ", mass:" + gCollider._collider.mass);
     }
     public Planet(string filename, int cols, int rows, TiledObject obj, bool announceCreation) : base(filename, cols, rows, obj)
     {
@@ -24,7 +24,7 @@ public class Planet : GravityObject
         easyDraw.SetOrigin(radius * 2, radius * 2);
         MyGame.planets.Add(this);
 
-        if(announceCreation) Console.WriteLine("Planet created at (" + x + "," + y + ") stationary:" + gCollider._collider.IsStationary());
+        if(announceCreation) Console.WriteLine("Planet created at (" + x + "," + y + ") stationary:" + gCollider._collider.IsStationary()+ ", mass:"+gCollider._collider.mass);
     }
 
     public override void Draw()

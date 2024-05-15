@@ -43,7 +43,6 @@ public class Player : GravityObject
 
         MyGame.GetGame().player = this;
 
-        Console.WriteLine("Player created at (" + x + "," + y + ") stationary:" + gCollider._collider.IsStationary());
 
         moveAnimationSprite = new AnimationSprite("data/player/running-animation-sprite-sheet.png", 5,5, 22, false, false);
         moveAnimationSprite.visible = false;
@@ -52,6 +51,9 @@ public class Player : GravityObject
         idleAnimationSprite = new AnimationSprite("data/player/running-animation-sprite-sheet.png", 5, 5, 1, false, false);
         idleAnimationSprite.visible = false;
         AddChild(idleAnimationSprite);
+
+        Console.WriteLine("Player created at (" + x + "," + y + ") stationary:" + gCollider._collider.IsStationary()+ ", mass:" + gCollider._collider.mass);
+
     }
 
     public override void Step()

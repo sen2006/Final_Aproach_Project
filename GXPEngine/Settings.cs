@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-public static class Settings
+﻿public static class Settings
 {
     // gravity
     internal static float gravitationalConstant = .03f;
@@ -18,9 +12,9 @@ public static class Settings
 
     // player
     internal static float fuelUsage = .1f;
-    internal static float maxFuel = 3f;
+    internal static float maxFuel = 4f;
     internal static float boosterPower = 4;
-    internal static float walkSpeed = 3;
+    internal static float walkSpeed = 5;
     internal static bool cameraRotation = false; // warning motion sickness
     internal static float maxHealth = 3;
     internal static float animationDeltaFrameTime=.15f;
