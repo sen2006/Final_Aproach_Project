@@ -240,7 +240,11 @@
   <object id="84" gid="2" x="2816" y="768" width="64" height="64"/>
   <object id="85" gid="2" x="2752" y="1920" width="64" height="64"/>
   <object id="86" gid="2" x="1152" y="2688" width="64" height="64"/>
-  <object id="88" name="player" type="Player" gid="9" x="192" y="2720" width="64" height="64"/>
+  <object id="88" name="player" type="Player" gid="9" x="192" y="2720" width="64" height="64">
+   <properties>
+    <property name="radius" type="float" value="30"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="7" name="Lights"/>
  <objectgroup id="8" name="VolumetricLights"/>

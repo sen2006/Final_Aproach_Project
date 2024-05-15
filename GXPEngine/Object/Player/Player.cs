@@ -8,7 +8,10 @@ public class Player : GravityObject
     enum State
     {
         Move,
-        Idle
+        Idle,
+        Jump,
+        Boost,
+        Landing
     }
 
     State state = State.Idle;
@@ -28,10 +31,16 @@ public class Player : GravityObject
 
     AnimationSprite moveAnimationSprite;
     AnimationSprite idleAnimationSprite;
+    AnimationSprite jumpAnimationSprite;
+    AnimationSprite landingAnimationSprite;
 
     int animationFrame;
     int animationCounter;
     AnimationSprite currentAnimation;
+    float animationDeltaFrameTime;
+
+    float jumpTimer = 0;
+    float boostTimer = 0;
 
     public Player(string filename, int cols, int rows, TiledObject obj) : base(filename, cols, rows, obj)
     {
@@ -44,13 +53,21 @@ public class Player : GravityObject
         MyGame.GetGame().player = this;
 
 
-        moveAnimationSprite = new AnimationSprite("data/player/running-animation-sprite-sheet.png", 5,5, 22, false, false);
+        moveAnimationSprite = new AnimationSprite("data/player/running-animation-sprite-sheet.png", 5, 5, 22, false, false);
         moveAnimationSprite.visible = false;
         AddChild(moveAnimationSprite);
 
-        idleAnimationSprite = new AnimationSprite("data/player/running-animation-sprite-sheet.png", 5, 5, 1, false, false);
+        idleAnimationSprite = new AnimationSprite("data/player/jumping-animation.png", 5, 4, 1, false, false);
         idleAnimationSprite.visible = false;
         AddChild(idleAnimationSprite);
+
+        jumpAnimationSprite = new AnimationSprite("data/player/jumping-animation.png", 5, 4, 17, false, false);
+        jumpAnimationSprite.visible = false;
+        AddChild(jumpAnimationSprite);
+
+        landingAnimationSprite = jumpAnimationSprite;
+        landingAnimationSprite.visible = false;
+        AddChild(landingAnimationSprite);
 
         Console.WriteLine("Player created at (" + x + "," + y + ") stationary:" + gCollider._collider.IsStationary()+ ", mass:" + gCollider._collider.mass);
 
@@ -92,24 +109,40 @@ public class Player : GravityObject
 
     public void HandleInputs()
     {
-        state = State.Idle;
+        state=State.Idle;
+        if (nearestPlanet != null && !(gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f))
+        {
+            boostTimer = Mathf.Min(boostTimer + Time.deltaTime, Settings.jumpBoostDelay);
+        }
+        else boostTimer = 0;
         if (Input.GetKey(Key.W) || Input.GetKey(Key.SPACE))
         {
+            bool allowJump = (jumpTimer >= Settings.jumpDelay);
+            bool allowBoost = (boostTimer >= Settings.jumpBoostDelay);
             // JUMP
             if (fuel > 0)
             {
                 if (!wasJump && (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f))
                 {
                     Vec2 planetAngle = nearestPlanet.gCollider._collider._position - gCollider._collider._position;
-                    gCollider._collider._position = nearestPlanet.gCollider._collider._position + (planetAngle.Normalized() * -(2.5f + radius + nearestPlanet.radius));
-                    wasJump = true;
-                }
-                gCollider._collider._velocity.Lerp(vecRotation * Settings.boosterPower * (1 + (nearestPlanetForce * .03f)) * -1, .01f);
+                    if (allowJump) gCollider._collider._position = nearestPlanet.gCollider._collider._position + (planetAngle.Normalized() * -(Settings.initialJumpDistance + radius + nearestPlanet.radius));
+                    if (allowJump) gCollider._collider._velocity = (vecRotation * Settings.jumpPower * (1 + (nearestPlanetForce * .03f)) * -1);
+                    wasJump = allowJump;
+                    jumpTimer = Mathf.Min(jumpTimer + Time.deltaTime, Settings.jumpDelay);
+                } else jumpTimer = 0;
+                if (!allowBoost) state = State.Jump;
+                else state = State.Boost;
+                if (allowJump || allowBoost) gCollider._collider._velocity.Lerp(vecRotation * Settings.boosterPower * (1 + (nearestPlanetForce * .03f)) * -1, .01f);
             }
-            fuel = Mathf.Max(fuel - Settings.fuelUsage, 0);
+            if (allowBoost) fuel = Mathf.Max(fuel - Settings.fuelUsage, 0);
+            return;
         }
-        else wasJump = false;
-        if (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f)
+        else
+        {
+            wasJump = false;
+            jumpTimer = 0;
+        }
+        if (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f && !wasJump)
         {
             // move LEFT and RIGHT if player is on planet
             if (Input.GetKey(Key.D))
@@ -176,9 +209,23 @@ public class Player : GravityObject
         {
             case State.Move:
                 currentAnimation = moveAnimationSprite;
+                animationDeltaFrameTime = Settings.moveAnimationDeltaFrameTime;
                 break;
             case State.Idle:
                 currentAnimation = idleAnimationSprite;
+                animationDeltaFrameTime = Settings.idleAnimationDeltaFrameTime;
+                break;
+            case State.Jump:
+                currentAnimation = jumpAnimationSprite;
+                animationDeltaFrameTime = Settings.jumpAnimationDeltaFrameTime;
+                break;
+            case State.Boost:
+                currentAnimation = idleAnimationSprite;
+                animationDeltaFrameTime = Settings.boostAnimationDeltaFrameTime;
+                break;
+            case State.Landing:
+                currentAnimation = landingAnimationSprite;
+                animationDeltaFrameTime = Settings.landingAnimationDeltaFrameTime;
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -188,6 +235,7 @@ public class Player : GravityObject
         {
             if (prevAnimation != null)
             {
+                prevAnimation.SetFrame(0);
                 prevAnimation.visible = false;
             }
 
@@ -198,21 +246,10 @@ public class Player : GravityObject
             animationCounter = 0;
             animationFrame = 0;
         }
-        currentAnimation.Animate(Settings.animationDeltaFrameTime);
+        currentAnimation.Animate(animationDeltaFrameTime);
         currentAnimation.Mirror(_mirrorX, _mirrorY);
 
-        /*
-        if (animationCounter > Settings.framesPerAnimationFrame)
-        {
-            animationCounter = 0;
-            if (animationFrame == currentAnimation.frameCount)
-            {
-                animationFrame = 0;
-            }
-            currentAnimation.SetFrame(animationFrame);
-            animationFrame++;
-        }
-        animationCounter++;*/
+        
     }
 
     public float GetFuel() { return fuel; }
