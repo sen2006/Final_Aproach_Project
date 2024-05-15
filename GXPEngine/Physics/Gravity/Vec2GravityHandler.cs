@@ -20,7 +20,10 @@ public static class Vec2GravityHandler
                 float distance = direction.Length();
                 float forceMagnitude = (Settings.gravitationalConstant * atractor._collider.mass * obj._collider.mass) / Mathf.Pow(distance, 2);
                 Vec2 force = direction.Normalized() * forceMagnitude;
-                obj._collider._velocity += force/obj._collider.mass;
+                if (forceMagnitude >= Settings.minGravityForce)
+                {
+                    obj._collider._velocity += force / obj._collider.mass;
+                }
 
             }
         }

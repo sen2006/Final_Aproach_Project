@@ -17,6 +17,6 @@ public class BlackHole : Planet
         Vec2 direction = player.gCollider._collider._position - gCollider._collider._position;
         float distance = direction.Length();
 
-        if (distance < radius+player.radius) { MyGame.GetGame().Die(); }
+        if (distance < radius+player.radius) { MyGame.GetGame().GameOver(); }
     }
 }

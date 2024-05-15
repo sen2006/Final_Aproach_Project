@@ -42,17 +42,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LevelHandler.cs" />
+    <Compile Include="Object\BlackHole.cs" />
+    <Compile Include="Object\GravityObject.cs" />
+    <Compile Include="Object\KeyCollectible.cs" />
+    <Compile Include="Object\MenuButtons\PlayButton.cs" />
+    <Compile Include="Object\MenuButtons\QuitButton.cs" />
+    <Compile Include="Object\Planet.cs" />
+    <Compile Include="Object\Player\Player.cs" />
+    <Compile Include="Object\Player\PlayerCamera.cs" />
+    <Compile Include="Object\Rocket.cs" />
     <Compile Include="Physics\Collisions\Vec2Collider.cs" />
     <Compile Include="Physics\Collisions\Vec2Collision.cs" />
     <Compile Include="Physics\Collisions\Vec2CollisionManager.cs" />
     <Compile Include="Physics\Collisions\Colliders\Vec2BallCollider.cs" />
     <Compile Include="Physics\Collisions\Colliders\Vec2LineCollider.cs" />
-    <Compile Include="GravityObject.cs" />
     <Compile Include="Physics\Gravity\Vec2GravityCollider.cs" />
     <Compile Include="Physics\Gravity\Vec2GravityHandler.cs" />
     <Compile Include="UI.cs" />
-    <Compile Include="Player\Player.cs" />
-    <Compile Include="Player\PlayerCamera.cs" />
     <Compile Include="Physics\Collisions\Vec2PhysicsCalculations.cs" />
     <Compile Include="GXPEngine\AddOns\Gizmos.cs" />
     <Compile Include="GXPEngine\AddOns\SpriteBatch.cs" />
@@ -96,7 +102,6 @@
     <Compile Include="GXPEngine\SoLoud\Soloud.cs" />
     <Compile Include="GXPEngine\SoLoud\SoloudSoundSystem.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="Planet.cs" />
     <Compile Include="Vec2\Vec2.cs" />
     <Compile Include="WallSegment.cs" />
   </ItemGroup>

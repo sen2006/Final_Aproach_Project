@@ -1,13 +1,12 @@
 ﻿using GXPEngine;
 using System;
-using System.Collections.Generic;
 using TiledMapParser;
 
 public static class LevelHandler
 {
     public static bool levelLoaded = false;
 
-    public static void LoadScene(string filename, bool loadLights = false, bool loadVignette = false, bool setColors = true)
+    public static void LoadScene(string filename, bool loadLights = false, bool loadVignette = false, bool setColors = false, bool loadUnlit = false)
     {
         Console.WriteLine("-- Starting Level loading (" + filename + ")");
         TiledLoader loader = new TiledLoader(filename);
@@ -43,11 +42,14 @@ public static class LevelHandler
 
         Console.WriteLine("- Loading background unlit");
         // background, unlit:
-        Pivot unlit = new Pivot();
-        MyGame.GetGame().AddChild(unlit);
-        loader.rootObject = unlit;
-        loader.LoadImageLayers(0);
-        ((Sprite)unlit.GetChildren()[0]).blendMode = BlendMode.FILLEMPTY;
+        if (loadUnlit)
+        {
+            Pivot unlit = new Pivot();
+            MyGame.GetGame().AddChild(unlit);
+            loader.rootObject = unlit;
+            loader.LoadImageLayers(0);
+            ((Sprite)unlit.GetChildren()[0]).blendMode = BlendMode.FILLEMPTY;
+        }
 
         loader.rootObject = MyGame.GetGame();
         if (loadLights)
@@ -95,12 +97,14 @@ public static class LevelHandler
         Console.WriteLine("- Clearing planet list");
         MyGame.planets.Clear();
 
+        Console.WriteLine("- Clearing collected key list");
+        MyGame.collectedKeys.Clear();
+
         Console.WriteLine("- Clearing collicer list");
         Vec2CollisionManager.colliders.Clear();
 
         Console.WriteLine("- Clearing gravity collicer list");
         Vec2GravityHandler.gravityObjects.Clear();
-
 
         Console.WriteLine("- Setting player to NULL");
         game.player = null;
@@ -116,6 +120,12 @@ public static class LevelHandler
 
         levelLoaded = false;
         Console.WriteLine("-- Finished destroying level");
+    }
+
+    internal static void Reload()
+    {
+        UnloadScene();
+        LoadScene(MyGame.GetGame().currentLevelFile);
     }
 }
 
