@@ -37,7 +37,7 @@ public class UI : GameObject
         float fuelBarWidth = 850;
         float fuelBarHeight = 115;
 
-        float redFuelBarWidth = fuelBarWidth * (1 - player.fuel / Settings.maxFuel);
+        float redFuelBarWidth = fuelBarWidth * (1 - player.GetFuel() / Settings.maxFuel);
 
         fuelBar.Stroke(0, 0);
 

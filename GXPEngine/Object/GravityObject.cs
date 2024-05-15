@@ -8,7 +8,7 @@ public class GravityObject : AnimationSprite
     public Vec2GravityCollider gCollider;
     public GravityObject(string filename, int cols, int rows, TiledObject obj) : base (filename, cols, rows)
     {
-        radius = obj.GetFloatProperty("radius", 64);
+        radius = obj.GetFloatProperty("radius", width/2);
 
         gCollider = new Vec2GravityCollider(new Vec2BallCollider(radius, obj.GetFloatProperty("density", 1), obj.GetBoolProperty("stationary", true)));
 

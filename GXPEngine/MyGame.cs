@@ -17,15 +17,19 @@ public class MyGame : Game
     }
 
     public static List<Planet> planets;
+    public static List<int> collectedKeys;
     public Player player;
     public PlayerCamera camera;
     public Camera UICamera;
     public UI UI;
 
+    public string currentLevelFile = "data/map/MainMenu.tmx";
+
     public MyGame() : base(1920, 1080, false, true)
     {
         //Initiate the MyGame
         planets = new List<Planet>();
+        collectedKeys = new List<int>();
     }
 
     void Update()
@@ -51,18 +55,18 @@ public class MyGame : Game
         {
             p.Step();
         }
-        player.Step();
-        camera.Step();
+        if(player!=null)player.Step();
+        if(camera!=null)camera.Step();
 
         // Update all screen positions
         foreach (Planet p in planets)
         {
             p.UpdateScreenPosition();
         }
-        player.UpdateScreenPosition();
-        camera.UpdateScreenPosition();
+        if (player != null) player.UpdateScreenPosition();
+        if (camera != null) camera.UpdateScreenPosition();
 
-        UI.Draw();
+        if (UI != null) UI.Draw();
     }
 
     void CheckNulls()
@@ -70,10 +74,10 @@ public class MyGame : Game
         if (!LevelHandler.levelLoaded)
         {
             Console.WriteLine("- Found Level is not be loaded");
-            LevelHandler.LoadScene("data/map/TestPrototype.tmx");
+            LevelHandler.LoadScene(currentLevelFile);
         }
 
-        if (camera == null)
+        if (camera == null && player!=null)
         {
             // create the camera that follows the player
             Console.WriteLine("- Found camera to be NULL");
@@ -82,7 +86,7 @@ public class MyGame : Game
             Console.WriteLine("Created camera");
         }
 
-        if (UI == null)
+        if (UI == null && player != null)
         {
             Console.WriteLine("- Found UI to be NULL");
             UI = new UI();
@@ -100,5 +104,11 @@ public class MyGame : Game
             AddChild(UICamera);
             Console.WriteLine("Created UI camera");
         }
+    }
+
+    public void GameOver()
+    {
+        currentLevelFile = "data/map/gameOverMenu.tmx";
+        LevelHandler.Reload();
     }
 }

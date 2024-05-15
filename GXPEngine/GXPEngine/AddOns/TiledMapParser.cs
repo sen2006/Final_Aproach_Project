@@ -488,7 +488,7 @@ namespace TiledMapParser
 		override public string ToString() {
 			return "Object: " + Name + " ID: " + ID + " Type: " + Type + " coordinates: (" + X + "," + Y + ") dimensions: (" + Width + "," + Height + ")\n";	
 		}
-	}
+    }
 
 	public class TiledUtils {
 		/// <summary>

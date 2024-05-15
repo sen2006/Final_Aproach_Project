@@ -42,7 +42,6 @@ public class Player : GravityObject
         easyDraw.SetOrigin(radius, radius);
 
         MyGame.GetGame().player = this;
-        MyGame.GetGame().AddChild(this);
 
         Console.WriteLine("Player created at (" + x + "," + y + ") stationary:" + gCollider._collider.IsStationary());
 
@@ -67,7 +66,7 @@ public class Player : GravityObject
 
     void checkHealth()
     {
-        if (health <= 0) MyGame.GetGame().Die();
+        if (health <= 0) MyGame.GetGame().GameOver();
     }
 
     void checkBoundries()
@@ -77,7 +76,7 @@ public class Player : GravityObject
         Vec2 LR = Settings.lowerRightBorder;
         if (pos.x < UL.x || pos.x > LR.x || pos.y < UL.y || pos.y > LR.y)
         {
-            MyGame.GetGame().Die();
+            MyGame.GetGame().GameOver();
         }
     }
 
@@ -197,8 +196,8 @@ public class Player : GravityObject
             animationCounter = 0;
             animationFrame = 0;
         }
-        currentAnimation.Mirror(_mirrorX, _mirrorY);
         currentAnimation.Animate(Settings.animationDeltaFrameTime);
+        currentAnimation.Mirror(_mirrorX, _mirrorY);
 
         /*
         if (animationCounter > Settings.framesPerAnimationFrame)

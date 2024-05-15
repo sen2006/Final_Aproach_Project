@@ -270,14 +270,19 @@ namespace GXPEngine
 		public void AnimateFixed() {
 			Animate(game.targetFps * Time.deltaTime / 1000f);
 		}
-		
-		//------------------------------------------------------------------------------------------------------------------------
-		//														currentFrame
-		//------------------------------------------------------------------------------------------------------------------------
-		/// <summary>
-		/// Returns the current frame.
-		/// </summary>
-		public int currentFrame {
+
+        internal void Animate(object animationDeltaFrameTime)
+        {
+            throw new NotImplementedException();
+        }
+
+        //------------------------------------------------------------------------------------------------------------------------
+        //														currentFrame
+        //------------------------------------------------------------------------------------------------------------------------
+        /// <summary>
+        /// Returns the current frame.
+        /// </summary>
+        public int currentFrame {
 			get { return _currentFrame; }
 			set { SetFrame (value); }
 		}

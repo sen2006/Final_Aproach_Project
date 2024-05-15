@@ -16,7 +16,7 @@ public class PlayButton : AnimationSprite
     {
         if (Input.GetMouseButtonDown(0) && HitTestPoint(Input.mouseX, Input.mouseY))
         {
-            MyGame.GetGame().currentLevelFile = "data/map/TestPrototype.tmx";
+            MyGame.GetGame().currentLevelFile = "data/map/GameMap.tmx";
             LevelHandler.Reload();
         }
     }
