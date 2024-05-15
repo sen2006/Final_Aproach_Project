@@ -54,3 +54,10 @@ C:\Users\FinnS\Desktop\Final_Aproach_Project\GXPEngine\obj\x86\Debug\GXPEngine.c
 C:\Users\FinnS\Desktop\Final_Aproach_Project\GXPEngine\obj\x86\Debug\GXPEngine.csproj.CoreCompileInputs.cache
 C:\Users\FinnS\Desktop\Final_Aproach_Project\GXPEngine\obj\x86\Debug\GXPEngine.exe
 C:\Users\FinnS\Desktop\Final_Aproach_Project\GXPEngine\obj\x86\Debug\GXPEngine.pdb
+C:\Users\sen\Desktop\GitKraken\Final_Aproach_Project\GXPEngine\bin\Debug\GXPEngine.exe.config
+C:\Users\sen\Desktop\GitKraken\Final_Aproach_Project\GXPEngine\bin\Debug\GXPEngine.exe
+C:\Users\sen\Desktop\GitKraken\Final_Aproach_Project\GXPEngine\bin\Debug\GXPEngine.pdb
+C:\Users\sen\Desktop\GitKraken\Final_Aproach_Project\GXPEngine\obj\x86\Debug\GXPEngine.csproj.AssemblyReference.cache
+C:\Users\sen\Desktop\GitKraken\Final_Aproach_Project\GXPEngine\obj\x86\Debug\GXPEngine.csproj.CoreCompileInputs.cache
+C:\Users\sen\Desktop\GitKraken\Final_Aproach_Project\GXPEngine\obj\x86\Debug\GXPEngine.exe
+C:\Users\sen\Desktop\GitKraken\Final_Aproach_Project\GXPEngine\obj\x86\Debug\GXPEngine.pdb
