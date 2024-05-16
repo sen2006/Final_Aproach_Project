@@ -137,7 +137,7 @@ public class Player : GravityObject
         if (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f &&
             nearestPlanet.gCollider._collider.mass > 0)
         {
-            fuel = Settings.maxFuel;
+            fuel = Mathf.Min(fuel + .3f ,Settings.maxFuel);
         }
     }
 
@@ -162,14 +162,14 @@ public class Player : GravityObject
                 {
                     Vec2 planetAngle = nearestPlanet.gCollider._collider._position - gCollider._collider._position;
                     if (allowJump) gCollider._collider._position = nearestPlanet.gCollider._collider._position + (planetAngle.Normalized() * -(Settings.initialJumpDistance + radius + nearestPlanet.radius));
-                    if (allowJump) gCollider._collider._velocity = (vecRotation * Settings.jumpPower * (1 + (nearestPlanetForce * .03f)) * -1);
+                    if (allowJump) gCollider._collider._velocity = (vecRotation * Settings.jumpPower * -1);
                     wasJump = allowJump;
                     jumpTimer = Mathf.Min(jumpTimer + Time.deltaTime, Settings.jumpDelay);
                 }
                 else jumpTimer = 0;
                 if (!allowBoost) state = State.Jump;
                 else state = State.Boost;
-                if (allowJump || allowBoost) gCollider._collider._velocity.Lerp(vecRotation * Settings.boosterPower * (1 + (nearestPlanetForce * .03f)) * -1, .01f);
+                if (allowJump || allowBoost) gCollider._collider._velocity.Lerp(vecRotation * Settings.boosterPower * -1, .02f);
             }
             if (allowBoost) fuel = Mathf.Max(fuel - Settings.fuelUsage, 0);
             return;
@@ -238,7 +238,7 @@ public class Player : GravityObject
         {
             nearestPlanetForce = forceMagnitude;
             targetRotation = (nearestPlanet.gCollider._collider._position - gCollider._collider._position).Normalized();
-            vecRotation.Lerp(targetRotation, (distance - (radius + nearestPlanet.radius) <= 0.0000001f) ? .1f : .0025f + .025f * (forceMagnitude / 150));
+            vecRotation.Lerp(targetRotation, (distance - (radius + nearestPlanet.radius) <= 0.5f) ? .6f : .0025f + .025f * (forceMagnitude / 150));
         }
     }
 

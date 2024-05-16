@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="64" tileheight="64" infinite="0" nextlayerid="10" nextobjectid="129">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="64" tileheight="64" infinite="0" nextlayerid="10" nextobjectid="137">
  <tileset firstgid="1" name="1x1" tilewidth="64" tileheight="64" tilecount="3" columns="3">
   <image source="1 tile objects_character_small_astroid_key.png" width="192" height="64"/>
  </tileset>
@@ -54,8 +54,23 @@
  <tileset firstgid="25" name="red triangle pillar" tilewidth="128" tileheight="64" tilecount="1" columns="1">
   <image source="planetAddons/red triangle pillar.png" width="128" height="64"/>
  </tileset>
- <tileset firstgid="26" name="crashed space ship" tilewidth="256" tileheight="192" tilecount="1" columns="1">
-  <image source="planetAddons/crashed space ship.png" width="256" height="192"/>
+ <tileset firstgid="26" name="crashed space ship" tilewidth="256" tileheight="192" tilecount="2" columns="2">
+  <image source="planetAddons/crashed space ship.png" width="512" height="192"/>
+ </tileset>
+ <tileset firstgid="28" name="rocket" tilewidth="512" tileheight="512" tilecount="1" columns="1">
+  <image source="planetAddons/rocket.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="29" name="key0" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+  <image source="key0.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="30" name="key1" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+  <image source="key1.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="31" name="key2" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+  <image source="key2.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="32" name="key3" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+  <image source="key3.png" width="64" height="64"/>
  </tileset>
  <imagelayer id="3" name="background">
   <image source="Button.png" width="64" height="64"/>
@@ -351,41 +366,26 @@
     <property name="density" type="float" value="0.5"/>
    </properties>
   </object>
-  <object id="88" name="player" type="Player" gid="6" x="192" y="2720" width="64" height="64">
+  <object id="88" name="player" type="Player" gid="6" x="209" y="2719" width="64" height="64">
    <properties>
     <property name="radius" type="float" value="30"/>
    </properties>
   </object>
-  <object id="91" type="KeyCollectible" gid="3" x="1487.75" y="254.303" width="64" height="64">
-   <properties>
-    <property name="ID" type="int" value="1"/>
-   </properties>
-  </object>
-  <object id="92" type="KeyCollectible" gid="3" x="500.849" y="2240.61" width="64" height="64">
-   <properties>
-    <property name="ID" type="int" value="2"/>
-   </properties>
-  </object>
-  <object id="93" type="KeyCollectible" gid="3" x="2716.85" y="2715.64" width="64" height="64">
-   <properties>
-    <property name="ID" type="int" value="3"/>
-   </properties>
-  </object>
   <object id="96" type="Planet" gid="16" x="1317.33" y="421.909" width="192" height="192"/>
   <object id="97" type="Planet" gid="15" x="2092.97" y="1487.76" width="192" height="191"/>
-  <object id="99" type="Planet" gid="10" x="2152.91" y="833.03" width="321" height="315">
+  <object id="99" type="Planet" gid="10" x="2180.91" y="854.03" width="321" height="315">
    <properties>
     <property name="radius" type="float" value="128"/>
    </properties>
   </object>
-  <object id="100" type="Planet" gid="13" x="979" y="1960" width="192" height="192"/>
+  <object id="100" type="Planet" gid="13" x="917" y="1830" width="192" height="192"/>
   <object id="101" type="Planet" gid="11" x="488.061" y="2504.91" width="384" height="384">
    <properties>
     <property name="radius" type="float" value="128"/>
    </properties>
   </object>
   <object id="103" type="Planet" gid="8" x="6.27273" y="3190.24" width="448" height="448"/>
-  <object id="104" type="BlackHole" gid="17" x="1156" y="1772" width="768" height="448">
+  <object id="104" type="BlackHole" gid="17" x="1162" y="1767" width="768" height="448">
    <properties>
     <property name="radius" type="float" value="100"/>
    </properties>
@@ -398,35 +398,34 @@
     <property name="radius" type="float" value="96"/>
    </properties>
   </object>
-  <object id="107" gid="23" x="90.6855" y="390.466" width="128" height="64" rotation="351.149"/>
-  <object id="108" gid="24" x="2920" y="114.667" width="64" height="128"/>
+  <object id="107" gid="23" x="381.595" y="929.86" width="128" height="64" rotation="351.149"/>
+  <object id="108" gid="24" x="2888" y="145.667" width="64" height="128"/>
   <object id="109" gid="25" x="2409.15" y="2436.61" width="128" height="64"/>
   <object id="110" type="Planet" gid="9" x="2195.5" y="2572" width="257" height="256"/>
-  <object id="112" type="Planet" gid="14" x="2844" y="268" width="192" height="192"/>
-  <object id="113" name="button 1" type="UFOButton" gid="6" x="231.383" y="178.018" width="23.8304" height="30.8094" rotation="-71">
+  <object id="112" type="Planet" gid="14" x="2812" y="299" width="192" height="192"/>
+  <object id="113" name="button 1" type="UFOButton" gid="6" x="522.292" y="717.412" width="23.8304" height="30.8094" rotation="-71">
    <properties>
     <property name="ID" type="int" value="3"/>
    </properties>
   </object>
-  <object id="114" name="button 2" type="UFOButton" gid="6" x="245.445" y="160.692" width="25.4396" height="34.3252" rotation="-61">
+  <object id="114" name="button 2" type="UFOButton" gid="6" x="536.354" y="700.086" width="25.4396" height="34.3252" rotation="-61">
    <properties>
     <property name="ID" type="int" value="1"/>
    </properties>
   </object>
-  <object id="115" name="button 3" type="UFOButton" gid="6" x="259.06" y="139.49" width="22.7902" height="32.1533" rotation="-60">
+  <object id="115" name="button 3" type="UFOButton" gid="6" x="549.969" y="678.884" width="22.7902" height="32.1533" rotation="-60">
    <properties>
     <property name="ID" type="int" value="2"/>
    </properties>
   </object>
-  <object id="117" type="UFO" gid="26" x="179.333" y="245.333" width="256" height="192" rotation="331.132"/>
-  <object id="118" type="Planet" gid="7" x="167.5" y="566.5" width="449" height="449"/>
-  <object id="119" type="Rocket" gid="26" x="-29" y="2872" width="256" height="192" rotation="331.132"/>
+  <object id="117" type="UFO" gid="26" x="470.242" y="784.727" width="256" height="192" rotation="331.132"/>
+  <object id="118" type="Planet" gid="7" x="458.409" y="1105.89" width="449" height="449"/>
   <object id="120" name="astroid in disguise" type="Planet" gid="16" x="1727.33" y="386.667" width="62" height="62">
    <properties>
     <property name="radius" type="float" value="32"/>
    </properties>
   </object>
-  <object id="122" name="astroid in disguise" type="Planet" gid="16" x="1793" y="997" width="62" height="62">
+  <object id="122" name="astroid in disguise" type="Planet" gid="16" x="1665" y="993" width="62" height="62">
    <properties>
     <property name="radius" type="float" value="32"/>
    </properties>
@@ -436,12 +435,7 @@
     <property name="radius" type="float" value="32"/>
    </properties>
   </object>
-  <object id="124" name="astroid in disguise" type="Planet" gid="16" x="971" y="1049" width="62" height="62">
-   <properties>
-    <property name="radius" type="float" value="32"/>
-   </properties>
-  </object>
-  <object id="125" name="astroid in disguise" type="Planet" gid="16" x="559" y="837" width="62" height="62">
+  <object id="124" name="astroid in disguise" type="Planet" gid="16" x="1025.55" y="1109.61" width="62" height="62">
    <properties>
     <property name="radius" type="float" value="32"/>
    </properties>
@@ -451,14 +445,30 @@
     <property name="radius" type="float" value="32"/>
    </properties>
   </object>
-  <object id="127" name="astroid in disguise" type="Planet" gid="16" x="1557" y="2081" width="62" height="62">
+  <object id="127" name="astroid in disguise" type="Planet" gid="16" x="1745" y="1993" width="62" height="62">
    <properties>
     <property name="radius" type="float" value="32"/>
    </properties>
   </object>
-  <object id="128" name="astroid in disguise" type="Planet" gid="16" x="2747" y="1895" width="62" height="62">
+  <object id="128" name="astroid in disguise" type="Planet" gid="16" x="2135" y="2211" width="62" height="62">
    <properties>
     <property name="radius" type="float" value="32"/>
+   </properties>
+  </object>
+  <object id="129" type="Rocket" gid="28" x="54.1103" y="2816.87" width="157.215" height="157.215" rotation="330"/>
+  <object id="132" type="KeyCollectible" gid="30" x="550.274" y="2227.3" width="64" height="64" rotation="326.763">
+   <properties>
+    <property name="ID" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="134" type="KeyCollectible" gid="31" x="2707.33" y="2734.67" width="64" height="64">
+   <properties>
+    <property name="ID" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="136" type="KeyCollectible" gid="32" x="1479.92" y="219.061" width="64" height="64" rotation="49.9933">
+   <properties>
+    <property name="ID" type="int" value="3"/>
    </properties>
   </object>
  </objectgroup>

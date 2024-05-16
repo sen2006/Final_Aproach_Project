@@ -5,9 +5,17 @@ public class UI : GameObject
 {
     EasyDraw coordinates;
 
+    EasyDraw text;
+
     EasyDraw fuelBar;
-    EasyDraw healthBar;
     Sprite fuelBarOverlay;
+    Sprite shieldOverlay;
+    Sprite keyOverlay;
+
+    Sprite key1;
+    Sprite key2;
+    Sprite key3;
+    Sprite key0;
 
     public UI()
     {
@@ -16,14 +24,56 @@ public class UI : GameObject
 
         fuelBar = new EasyDraw(1920, 1080, false);
         AddChild(fuelBar);
+        fuelBar.SetOrigin(fuelBar.width / 2, fuelBar.height);
+        fuelBar.SetXY(1920 / 2, 1050);
+
+        fuelBar.scale = .5f;
 
         fuelBarOverlay = new Sprite("data/UI/fuel_bar_overlay.png");
         AddChild(fuelBarOverlay);
         fuelBarOverlay.SetOrigin(fuelBarOverlay.width / 2, fuelBarOverlay.height);
-        fuelBarOverlay.SetXY(1920 / 2, 1080);
+        fuelBarOverlay.SetXY(1920 / 2, 1050);
 
-        healthBar = new EasyDraw(1920, 1080, false);
-        AddChild(healthBar);
+        fuelBarOverlay.scale = .5f;
+
+        text = new EasyDraw(1920, 1080, false);
+        AddChild(text);
+
+        shieldOverlay = new Sprite("data/UI/shield.png");
+        AddChild(shieldOverlay);
+        shieldOverlay.SetOrigin(shieldOverlay.width/2, 0);
+        shieldOverlay.SetXY(1800,-20);
+        shieldOverlay.scale = .2f;
+
+        keyOverlay = new Sprite("data/UI/keys.png");
+        AddChild(keyOverlay);
+        keyOverlay.SetOrigin(keyOverlay.width/2, 0);
+        keyOverlay.SetXY(1800, 180);
+        keyOverlay.scale = .2f;
+
+        key1 = new Sprite("data/UI/key1.png");
+        AddChild(key1);
+        key1.SetOrigin(key1.width / 2, 0);
+        key1.SetXY(1800, 155);
+        key1.scale = .2f;
+
+        key2 = new Sprite("data/UI/key2.png");
+        AddChild(key2);
+        key2.SetOrigin(key2.width / 2, 0);
+        key2.SetXY(1800, 155);
+        key2.scale = .2f;
+
+        key3 = new Sprite("data/UI/key3.png");
+        AddChild(key3);
+        key3.SetOrigin(key3.width / 2, 0);
+        key3.SetXY(1800, 155);
+        key3.scale = .2f;
+
+        key0 = new Sprite("data/UI/key0.png");
+        AddChild(key0);
+        key0.SetOrigin(key0.width / 2, 0);
+        key0.SetXY(1800, 155);
+        key0.scale = .2f;
     }
 
     public void Draw()
@@ -47,8 +97,15 @@ public class UI : GameObject
         fuelBar.Fill(185, 73, 75);
         fuelBar.Rect(1920 / 2 + -fuelBarWidth / 2 + (fuelBarWidth - redFuelBarWidth / 2), 1080 - 140 + fuelBarHeight / 2, redFuelBarWidth, fuelBarHeight);
 
-        healthBar.Clear(0, 0, 0, 0);
-        healthBar.Text("health:"+MyGame.GetGame().player.GetHealth()+"/"+Settings.maxHealth, 0, 20);
+        text.Clear(0, 0, 0, 0);
+        text.TextSize(20);
+        text.Text(Mathf.Round(MyGame.GetGame().player.GetHealth()*10)/10d+"/"+Settings.maxHealth, 1650, 100);
+        text.Text(MyGame.collectedKeys.Count+"/4", 1650, 250);
+
+        key0.visible = MyGame.collectedKeys.Contains(0);
+        key1.visible = MyGame.collectedKeys.Contains(1);
+        key2.visible = MyGame.collectedKeys.Contains(2);
+        key3.visible = MyGame.collectedKeys.Contains(3);
     }
 }
 

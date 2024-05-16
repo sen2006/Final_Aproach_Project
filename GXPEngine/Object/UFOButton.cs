@@ -8,14 +8,14 @@ public class UFOButton : AnimationSprite
     //1=red
     //2=green
     //3=blue
-    int state = 1;
+    int state = 0;
     EasyDraw easyDraw;
     public UFOButton(string filename, int cols, int rows, TiledObject obj) : base(filename, cols, rows)
     {
-        easyDraw = new EasyDraw(Mathf.Ceiling(obj.Width*2), Mathf.Ceiling(obj.Height*2), true);
-        easyDraw.SetXY(-height/2,-width/2);
+        easyDraw = new EasyDraw(Mathf.Ceiling(obj.Width * 2), Mathf.Ceiling(obj.Height * 2), true);
+        easyDraw.SetXY(-height / 2, -width / 2);
         AddChild(easyDraw);
-        ID = obj.GetIntProperty("ID",0);
+        ID = obj.GetIntProperty("ID", 0);
         MyGame.UFOButtons.Add(this);
     }
 
@@ -46,7 +46,18 @@ public class UFOButton : AnimationSprite
                 easyDraw.Clear(84, 196, 252);
                 break;
             default:
-                easyDraw.Clear(0, 0, 0);
+                switch ((Time.time/500) % 3)
+                {
+                    case 0:
+                        easyDraw.Clear(250, 53, 53);
+                        break;
+                    case 1:
+                        easyDraw.Clear(112, 214, 98);
+                        break;
+                    case 2:
+                        easyDraw.Clear(84, 196, 252);
+                        break;
+                }
                 break;
         }
     }
