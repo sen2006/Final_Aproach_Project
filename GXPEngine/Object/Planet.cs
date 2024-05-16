@@ -14,7 +14,7 @@ public class Planet : GravityObject
         easyDraw.SetOrigin(radius * 2, radius * 2);
         MyGame.planets.Add(this);
 
-        Console.WriteLine("Planet created at (" + x + "," + y + ") stationary:" + gCollider._collider.IsStationary()+ ", mass:" + gCollider._collider.mass);
+        Console.WriteLine("Planet created at (" + x + "," + y + ") stationary:" + gCollider._collider.IsStationary()+ ", mass:" + gCollider._collider.mass + ", density:" + obj.GetFloatProperty("density", Settings.defauldPlanetDensity));
     }
     public Planet(string filename, int cols, int rows, TiledObject obj, bool announceCreation) : base(filename, cols, rows, obj)
     {
@@ -24,7 +24,7 @@ public class Planet : GravityObject
         easyDraw.SetOrigin(radius * 2, radius * 2);
         MyGame.planets.Add(this);
 
-        if(announceCreation) Console.WriteLine("Planet created at (" + x + "," + y + ") stationary:" + gCollider._collider.IsStationary()+ ", mass:"+gCollider._collider.mass);
+        if(announceCreation) Console.WriteLine("Planet created at (" + x + "," + y + ") stationary:" + gCollider._collider.IsStationary()+ ", mass:"+gCollider._collider.mass +", density:"+ obj.GetFloatProperty("density", Settings.defauldPlanetDensity));
     }
 
     public override void Draw()

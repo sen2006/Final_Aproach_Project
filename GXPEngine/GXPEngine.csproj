@@ -58,6 +58,7 @@
     <Compile Include="Physics\Collisions\Colliders\Vec2LineCollider.cs" />
     <Compile Include="Physics\Gravity\Vec2GravityCollider.cs" />
     <Compile Include="Physics\Gravity\Vec2GravityHandler.cs" />
+    <Compile Include="SoundHandler.cs" />
     <Compile Include="UI.cs" />
     <Compile Include="Physics\Collisions\Vec2PhysicsCalculations.cs" />
     <Compile Include="GXPEngine\AddOns\Gizmos.cs" />

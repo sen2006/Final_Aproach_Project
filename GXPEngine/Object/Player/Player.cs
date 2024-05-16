@@ -69,7 +69,7 @@ public class Player : GravityObject
         landingAnimationSprite.visible = false;
         AddChild(landingAnimationSprite);
 
-        Console.WriteLine("Player created at (" + x + "," + y + ") stationary:" + gCollider._collider.IsStationary()+ ", mass:" + gCollider._collider.mass);
+        Console.WriteLine("Player created at (" + x + "," + y + ") stationary:" + gCollider._collider.IsStationary()+ ", mass:" + gCollider._collider.mass + ", density:" + obj.GetFloatProperty("density", Settings.defauldPlayerDensity));
 
     }
 
