@@ -421,14 +421,46 @@
   <object id="117" type="UFO" gid="26" x="179.333" y="245.333" width="256" height="192" rotation="331.132"/>
   <object id="118" type="Planet" gid="7" x="167.5" y="566.5" width="449" height="449"/>
   <object id="119" type="Rocket" gid="26" x="-29" y="2872" width="256" height="192" rotation="331.132"/>
-  <object id="120" name="astroid in disguise" type="Planet" gid="16" x="1727.33" y="386.667" width="62" height="62"/>
-  <object id="122" name="astroid in disguise" type="Planet" gid="16" x="1793" y="997" width="62" height="62"/>
-  <object id="123" name="astroid in disguise" type="Planet" gid="16" x="2369" y="1143" width="62" height="62"/>
-  <object id="124" name="astroid in disguise" type="Planet" gid="16" x="971" y="1049" width="62" height="62"/>
-  <object id="125" name="astroid in disguise" type="Planet" gid="16" x="559" y="837" width="62" height="62"/>
-  <object id="126" name="astroid in disguise" type="Planet" gid="16" x="973" y="1485" width="62" height="62"/>
-  <object id="127" name="astroid in disguise" type="Planet" gid="16" x="1557" y="2081" width="62" height="62"/>
-  <object id="128" name="astroid in disguise" type="Planet" gid="16" x="2747" y="1895" width="62" height="62"/>
+  <object id="120" name="astroid in disguise" type="Planet" gid="16" x="1727.33" y="386.667" width="62" height="62">
+   <properties>
+    <property name="radius" type="float" value="32"/>
+   </properties>
+  </object>
+  <object id="122" name="astroid in disguise" type="Planet" gid="16" x="1793" y="997" width="62" height="62">
+   <properties>
+    <property name="radius" type="float" value="32"/>
+   </properties>
+  </object>
+  <object id="123" name="astroid in disguise" type="Planet" gid="16" x="2369" y="1143" width="62" height="62">
+   <properties>
+    <property name="radius" type="float" value="32"/>
+   </properties>
+  </object>
+  <object id="124" name="astroid in disguise" type="Planet" gid="16" x="971" y="1049" width="62" height="62">
+   <properties>
+    <property name="radius" type="float" value="32"/>
+   </properties>
+  </object>
+  <object id="125" name="astroid in disguise" type="Planet" gid="16" x="559" y="837" width="62" height="62">
+   <properties>
+    <property name="radius" type="float" value="32"/>
+   </properties>
+  </object>
+  <object id="126" name="astroid in disguise" type="Planet" gid="16" x="973" y="1485" width="62" height="62">
+   <properties>
+    <property name="radius" type="float" value="32"/>
+   </properties>
+  </object>
+  <object id="127" name="astroid in disguise" type="Planet" gid="16" x="1557" y="2081" width="62" height="62">
+   <properties>
+    <property name="radius" type="float" value="32"/>
+   </properties>
+  </object>
+  <object id="128" name="astroid in disguise" type="Planet" gid="16" x="2747" y="1895" width="62" height="62">
+   <properties>
+    <property name="radius" type="float" value="32"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="7" name="Lights"/>
  <objectgroup id="8" name="VolumetricLights"/>
