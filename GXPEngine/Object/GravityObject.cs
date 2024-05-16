@@ -12,7 +12,7 @@ public class GravityObject : AnimationSprite
 
         gCollider = new Vec2GravityCollider(new Vec2BallCollider(radius, obj.GetFloatProperty("density", 1), obj.GetBoolProperty("stationary", true)));
 
-        gCollider._collider._position = new Vec2(obj.X + radius, obj.Y - radius);
+        gCollider._collider._position = new Vec2(obj.X + obj.Width/2, obj.Y - obj.Height/2);
 
         SetOrigin(radius, radius);
 
@@ -44,9 +44,9 @@ public class GravityObject : AnimationSprite
 
             Vec2 planetAngle = planetColider._position - colider._position;
 
-            if (aproachSpeed>0) colider._position = planetColider._position + (planetAngle.Normalized() * -(radius + nearestPlanet.radius));
+            if (aproachSpeed>0 && nearestPlanet.gCollider._collider.mass > 0) colider._position = planetColider._position + (planetAngle.Normalized() * -(radius + nearestPlanet.radius));
 
-            colider._velocity = new Vec2(0, 0);
+            if (nearestPlanet.gCollider._collider.mass>0)colider._velocity = new Vec2(0, 0);
         }
     }
 

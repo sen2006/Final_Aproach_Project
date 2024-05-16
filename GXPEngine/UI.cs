@@ -1,15 +1,12 @@
 ﻿using GXPEngine;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 public class UI : GameObject
 {
     EasyDraw coordinates;
 
     EasyDraw fuelBar;
+    EasyDraw healthBar;
     Sprite fuelBarOverlay;
 
     public UI()
@@ -24,6 +21,9 @@ public class UI : GameObject
         AddChild(fuelBarOverlay);
         fuelBarOverlay.SetOrigin(fuelBarOverlay.width / 2, fuelBarOverlay.height);
         fuelBarOverlay.SetXY(1920 / 2, 1080);
+
+        healthBar = new EasyDraw(1920, 1080, false);
+        AddChild(healthBar);
     }
 
     public void Draw()
@@ -46,7 +46,9 @@ public class UI : GameObject
 
         fuelBar.Fill(185, 73, 75);
         fuelBar.Rect(1920 / 2 + -fuelBarWidth / 2 + (fuelBarWidth - redFuelBarWidth / 2), 1080 - 140 + fuelBarHeight / 2, redFuelBarWidth, fuelBarHeight);
-    }
 
+        healthBar.Clear(0, 0, 0, 0);
+        healthBar.Text("health:"+MyGame.GetGame().player.GetHealth()+"/"+Settings.maxHealth, 0, 20);
+    }
 }
 

@@ -18,9 +18,12 @@ public class MyGame : Game
 
     public static List<Planet> planets;
     public static List<int> collectedKeys;
+    public static List<UFOButton> UFOButtons;
     public Player player;
     public PlayerCamera camera;
     public Camera UICamera;
+    public Camera backgroundCamera;
+    public AnimationSprite background;
     public UI UI;
 
     public string currentLevelFile = "data/map/MainMenu.tmx";
@@ -30,6 +33,8 @@ public class MyGame : Game
         //Initiate the MyGame
         planets = new List<Planet>();
         collectedKeys = new List<int>();
+        UFOButtons = new List<UFOButton>();
+        SoundHandler.track.play();
     }
 
     void Update()
@@ -37,6 +42,18 @@ public class MyGame : Game
         if (Input.GetKeyDown(Key.R))
         {
             LevelHandler.UnloadScene();
+        }
+
+        if (camera != null)
+        {
+            if (Input.GetKey(Key.X))
+            {
+                camera.scale = 4f;
+            } else if (Input.GetKey(Key.Z))
+            {
+                camera.scale = .2f;
+            }
+            else camera.scale = .9f;
         }
 
         CheckNulls();
@@ -65,6 +82,7 @@ public class MyGame : Game
         }
         if (player != null) player.UpdateScreenPosition();
         if (camera != null) camera.UpdateScreenPosition();
+        if (background!= null) background.Animate(Settings.backgroundAnimationDeltaFrameTime);
 
         if (UI != null) UI.Draw();
     }
@@ -75,6 +93,24 @@ public class MyGame : Game
         {
             Console.WriteLine("- Found Level is not be loaded");
             LevelHandler.LoadScene(currentLevelFile);
+        }
+
+        if (background == null && player != null)
+        {
+            Console.WriteLine("- Found background to be NULL");
+            background = new AnimationSprite("data/map/background.png", 7,1);
+            background.SetXY(50000, 50000);
+            Console.WriteLine("Created background");
+            AddChild(background);
+        }
+
+        if (backgroundCamera == null && player != null)
+        {
+            Console.WriteLine("- Found background camera to be NULL");
+            backgroundCamera = new Camera(0, 0, 1920, 1080, false);
+            backgroundCamera.SetXY(50000 + (1920 / 2), 50000 + (1080 / 2));
+            Console.WriteLine("Created background camera");
+            AddChild(backgroundCamera);
         }
 
         if (camera == null && player!=null)

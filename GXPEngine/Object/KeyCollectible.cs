@@ -5,6 +5,7 @@ using TiledMapParser;
 public class KeyCollectible : GravityObject
 {
     int ID;
+    public bool locked = false;
     public KeyCollectible(string filename, int cols, int rows, TiledObject obj) : base(filename, cols, rows, obj)
     {
         ID = obj.GetIntProperty("ID", 0);
@@ -19,12 +20,14 @@ public class KeyCollectible : GravityObject
 
     public void Update()
     {
-        Player player = MyGame.GetGame().player;
         base.Step();
+        base.UpdateScreenPosition();
+        Player player = MyGame.GetGame().player;
+        if (player == null) return;
         Vec2 direction = player.gCollider._collider._position - gCollider._collider._position;
         float distance = direction.Length();
 
-        if (distance <= radius + player.radius)
+        if (distance <= radius + player.radius && !locked)
         {
             Console.WriteLine("- Collected Key ID:" + ID);
             MyGame.collectedKeys.Add(ID);

@@ -26,7 +26,7 @@ public class Player : GravityObject
 
     bool wasJump = false;
 
-    float fuel = Settings.maxFuel;
+    float fuel = 0;
     float health = Settings.maxHealth;
 
     AnimationSprite moveAnimationSprite;
@@ -41,6 +41,8 @@ public class Player : GravityObject
 
     float jumpTimer = 0;
     float boostTimer = 0;
+
+    float immunityTimer;
 
     public Player(string filename, int cols, int rows, TiledObject obj) : base(filename, cols, rows, obj)
     {
@@ -57,11 +59,11 @@ public class Player : GravityObject
         moveAnimationSprite.visible = false;
         AddChild(moveAnimationSprite);
 
-        idleAnimationSprite = new AnimationSprite("data/player/jumping-animation.png", 5, 4, 1, false, false);
+        idleAnimationSprite = new AnimationSprite("data/player/floating-animation.png", 4, 3, -1, false, false);
         idleAnimationSprite.visible = false;
         AddChild(idleAnimationSprite);
 
-        jumpAnimationSprite = new AnimationSprite("data/player/jumping-animation.png", 5, 4, 17, false, false);
+        jumpAnimationSprite = new AnimationSprite("data/player/jumping-animation.png", 3, 3, 8, false, false);
         jumpAnimationSprite.visible = false;
         AddChild(jumpAnimationSprite);
 
@@ -69,23 +71,54 @@ public class Player : GravityObject
         landingAnimationSprite.visible = false;
         AddChild(landingAnimationSprite);
 
-        Console.WriteLine("Player created at (" + x + "," + y + ") stationary:" + gCollider._collider.IsStationary()+ ", mass:" + gCollider._collider.mass + ", density:" + obj.GetFloatProperty("density", Settings.defauldPlayerDensity));
+        Console.WriteLine("Player created at (" + x + "," + y + ") stationary:" + gCollider._collider.IsStationary() + ", mass:" + gCollider._collider.mass + ", density:" + obj.GetFloatProperty("density", Settings.defauldPlayerDensity));
 
     }
 
     public override void Step()
     {
+        nearestPlanet = FindNearestPlanet();
         RefillFuel();
         HandleInputs();
         rotateToNearestPlanet();
         checkBoundries();
-        checkHealth();
+        checkPoisonPlanetOrDamage();
+        if (checkHealth()) return;
+        immunityTimer = Math.Max(immunityTimer - Time.deltaTime, 0);
         base.Step();
     }
 
-    void checkHealth()
+    void checkPoisonPlanetOrDamage()
     {
-        if (health <= 0) MyGame.GetGame().GameOver();
+
+        if (nearestPlanet != null)
+        {
+            Vec2 direction = nearestPlanet.gCollider._collider._position - gCollider._collider._position;
+            float distance = direction.Length();
+            if (distance - (nearestPlanet.poisonRadius+radius) <= 0)
+            {
+                Damage(nearestPlanet.poisonDamage);
+            }
+            if (distance - (nearestPlanet.radius + radius) <= .5f)
+            {
+                Damage(nearestPlanet.touchDamage);
+                if (nearestPlanet.touchDamage > 0)
+                {
+                    gCollider._collider._velocity = direction.Normalized() * -.5f;
+                    gCollider._collider._position = nearestPlanet.gCollider._collider._position + direction.Normalized() * -(nearestPlanet.radius + radius + 2.5f);
+                }
+            }
+        }
+    }
+
+    bool checkHealth()
+    {
+        if (health <= 0)
+        {
+            MyGame.GetGame().GameOver();
+            return true;
+        }
+        return false;
     }
 
     void checkBoundries()
@@ -101,7 +134,8 @@ public class Player : GravityObject
 
     void RefillFuel()
     {
-        if (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f)
+        if (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f &&
+            nearestPlanet.gCollider._collider.mass > 0)
         {
             fuel = Settings.maxFuel;
         }
@@ -109,7 +143,7 @@ public class Player : GravityObject
 
     public void HandleInputs()
     {
-        state=State.Idle;
+        state = State.Idle;
         if (nearestPlanet != null && !(gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f))
         {
             boostTimer = Mathf.Min(boostTimer + Time.deltaTime, Settings.jumpBoostDelay);
@@ -122,14 +156,17 @@ public class Player : GravityObject
             // JUMP
             if (fuel > 0)
             {
-                if (!wasJump && (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f))
+                if (!wasJump &&
+                    (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f) &&
+                    nearestPlanet.gCollider._collider.mass > 0)
                 {
                     Vec2 planetAngle = nearestPlanet.gCollider._collider._position - gCollider._collider._position;
                     if (allowJump) gCollider._collider._position = nearestPlanet.gCollider._collider._position + (planetAngle.Normalized() * -(Settings.initialJumpDistance + radius + nearestPlanet.radius));
                     if (allowJump) gCollider._collider._velocity = (vecRotation * Settings.jumpPower * (1 + (nearestPlanetForce * .03f)) * -1);
                     wasJump = allowJump;
                     jumpTimer = Mathf.Min(jumpTimer + Time.deltaTime, Settings.jumpDelay);
-                } else jumpTimer = 0;
+                }
+                else jumpTimer = 0;
                 if (!allowBoost) state = State.Jump;
                 else state = State.Boost;
                 if (allowJump || allowBoost) gCollider._collider._velocity.Lerp(vecRotation * Settings.boosterPower * (1 + (nearestPlanetForce * .03f)) * -1, .01f);
@@ -142,7 +179,11 @@ public class Player : GravityObject
             wasJump = false;
             jumpTimer = 0;
         }
-        if (nearestPlanet != null && gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f && !wasJump)
+        if (nearestPlanet != null &&
+            gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f &&
+            !wasJump &&
+            nearestPlanet.gCollider._collider.mass > 0 &&
+            !(nearestPlanet is BlackHole))
         {
             // move LEFT and RIGHT if player is on planet
             if (Input.GetKey(Key.D))
@@ -153,12 +194,13 @@ public class Player : GravityObject
 
                 _mirrorX = false;
                 state = State.Move;
-            } else if (Input.GetKey(Key.A))
+            }
+            else if (Input.GetKey(Key.A))
             {
                 Vec2 targetMovament = targetRotation.Normalized() * Settings.walkSpeed;
                 targetMovament.RotateDegrees(90);
                 gCollider._collider._position += targetMovament;
-                
+
                 _mirrorX = true;
                 state = State.Move;
             }
@@ -186,7 +228,6 @@ public class Player : GravityObject
 
     public void rotateToNearestPlanet()
     {
-        nearestPlanet = FindNearestPlanet();
         if (nearestPlanet == null) return;
         Vec2 direction = nearestPlanet.gCollider._collider._position - gCollider._collider._position;
         float distance = direction.Length();
@@ -231,7 +272,7 @@ public class Player : GravityObject
                 throw new ArgumentOutOfRangeException();
         }
 
-        if (currentAnimation != prevAnimation && currentAnimation!= null)
+        if (currentAnimation != prevAnimation && currentAnimation != null)
         {
             if (prevAnimation != null)
             {
@@ -248,15 +289,21 @@ public class Player : GravityObject
         }
         currentAnimation.Animate(animationDeltaFrameTime);
         currentAnimation.Mirror(_mirrorX, _mirrorY);
-
-        
     }
 
     public float GetFuel() { return fuel; }
 
     public float GetHealth() { return health; }
 
-    public void SetHealth(float health) { this.health = Mathf.Min(health, Settings.maxHealth);}
+    public void SetHealth(float health) { this.health = Mathf.Min(health, Settings.maxHealth); }
 
-    public void Damage(float damage) { health = Mathf.Max(Mathf.Min(health - damage, Settings.maxHealth),0); }
+    public void Damage(float damage)
+    {
+        if (immunityTimer <= 0 && damage > 0)
+        {
+            health = Mathf.Max(Mathf.Min(health - damage, Settings.maxHealth), 0);
+            immunityTimer = Settings.immunityTime;
+            Console.WriteLine("Damage dealt to player:" + damage);
+        }
+    }
 }

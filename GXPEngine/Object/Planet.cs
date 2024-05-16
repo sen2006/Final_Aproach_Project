@@ -5,6 +5,9 @@ using TiledMapParser;
 public class Planet : GravityObject
 {
     EasyDraw easyDraw;
+    public float poisonRadius;
+    public float poisonDamage;
+    public float touchDamage;
 
     public Planet(string filename, int cols, int rows, TiledObject obj) : base(filename, cols, rows, obj)
     {
@@ -13,6 +16,10 @@ public class Planet : GravityObject
         easyDraw = new EasyDraw(Mathf.Ceiling(radius * 2) * 2, Mathf.Ceiling(radius * 2) * 2);
         easyDraw.SetOrigin(radius * 2, radius * 2);
         MyGame.planets.Add(this);
+
+        poisonRadius = obj.GetFloatProperty("poisonRadius", 0);
+        poisonDamage = obj.GetFloatProperty("poisonDamage", 1);
+        touchDamage = obj.GetFloatProperty("touchDamage", 0);
 
         Console.WriteLine("Planet created at (" + x + "," + y + ") stationary:" + gCollider._collider.IsStationary()+ ", mass:" + gCollider._collider.mass + ", density:" + obj.GetFloatProperty("density", Settings.defauldPlanetDensity));
     }

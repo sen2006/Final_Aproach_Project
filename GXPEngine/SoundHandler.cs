@@ -1,18 +1,19 @@
 ﻿using GXPEngine;
+using System;
 public class SoundHandler
 {
 
 
-    //public static SoundHandler shooting_sound = new SoundHandler("assets/sound/Shotgun firing.wav", 0.4f, 0);
+    public static SoundHandler track = new SoundHandler("data/sound/Soundtrack.wav", 1f, 0, true);
 
 
     Sound storedSound;
     float defaultVolume;
     uint defaultChanel;
 
-    public SoundHandler(string fileName, float defaultVolume, uint defaultChanel)
+    public SoundHandler(string fileName, float defaultVolume, uint defaultChanel, bool loop = false)
     {
-        storedSound = new Sound(fileName);
+        storedSound = new Sound(fileName, loop);
         this.defaultVolume = defaultVolume;
         this.defaultChanel = defaultChanel;
     }
@@ -30,5 +31,6 @@ public class SoundHandler
     public void play(float volume, uint chanel)
     {
         storedSound.Play(false, chanel, volume, 0);
+        Console.WriteLine("- Started playing sound:" + storedSound);
     }
 }

@@ -7,7 +7,7 @@ public class PlayerCamera : Camera
 
     public Vec2 _position;
     public Vec2 vecRotation;
-    public PlayerCamera(int windowX, int windowY, int windowWidth, int windowHeight, Player pPlayer) : base (windowX, windowY, windowWidth, windowHeight, true)
+    public PlayerCamera(int windowX, int windowY, int windowWidth, int windowHeight, Player pPlayer) : base (windowX, windowY, windowWidth, windowHeight, false)
     {
         player = pPlayer;
     }

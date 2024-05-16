@@ -106,6 +106,9 @@ public static class LevelHandler
         Console.WriteLine("- Clearing gravity collicer list");
         Vec2GravityHandler.gravityObjects.Clear();
 
+        Console.WriteLine("- Clearing UFO-buttons list");
+        MyGame.UFOButtons.Clear();
+
         Console.WriteLine("- Setting player to NULL");
         game.player = null;
 
@@ -117,6 +120,14 @@ public static class LevelHandler
 
         Console.WriteLine("- Setting UI-camera to NULL");
         game.UICamera = null;
+
+        Console.WriteLine("- Setting background to NULL");
+        game.background = null;
+
+        Console.WriteLine("- Setting background-camera to NULL");
+        game.backgroundCamera = null;
+
+        
 
         levelLoaded = false;
         Console.WriteLine("-- Finished destroying level");

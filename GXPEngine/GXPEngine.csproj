@@ -51,6 +51,8 @@
     <Compile Include="Object\Player\Player.cs" />
     <Compile Include="Object\Player\PlayerCamera.cs" />
     <Compile Include="Object\Rocket.cs" />
+    <Compile Include="Object\UFO.cs" />
+    <Compile Include="Object\UFOButton.cs" />
     <Compile Include="Physics\Collisions\Vec2Collider.cs" />
     <Compile Include="Physics\Collisions\Vec2Collision.cs" />
     <Compile Include="Physics\Collisions\Vec2CollisionManager.cs" />

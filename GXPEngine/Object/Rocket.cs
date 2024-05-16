@@ -12,6 +12,7 @@ public class Rocket : AnimationSprite
     void Update()
     {
         Player player = MyGame.GetGame().player;
+        if (player == null) return;
         Vec2 direction = player.gCollider._collider._position - new Vec2(x,y);
         float distance = direction.Length();
 
@@ -19,7 +20,7 @@ public class Rocket : AnimationSprite
             MyGame.collectedKeys.Contains(1) && 
             MyGame.collectedKeys.Contains(2) && 
             MyGame.collectedKeys.Contains(3) && 
-            MyGame.collectedKeys.Contains(4))
+            MyGame.collectedKeys.Contains(0))
         {
             MyGame.GetGame().currentLevelFile = "data/map/GameOverMenu.tmx";
             LevelHandler.Reload();

@@ -7,7 +7,7 @@ public static class Vec2CollisionManager
     public static List<Vec2Collider> colliders = new List<Vec2Collider>();
     // settings
 
-    static float bounciness = 0f;
+    static float bounciness = .9f;
 
     public static void UpdateOldPositions()
     {
