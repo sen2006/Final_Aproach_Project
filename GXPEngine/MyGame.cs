@@ -34,7 +34,9 @@ public class MyGame : Game
         planets = new List<Planet>();
         collectedKeys = new List<int>();
         UFOButtons = new List<UFOButton>();
-        SoundHandler.track.play();
+        SoundHandler.BlackHoleAmbiance.SetDefaultVolume(0);
+        SoundHandler.MusicTrack.Play();
+        SoundHandler.BlackHoleAmbiance.Play();
     }
 
     void Update()
@@ -144,6 +146,7 @@ public class MyGame : Game
 
     public void GameOver()
     {
+        SoundHandler.Death.Play();
         currentLevelFile = "data/map/gameOverMenu.tmx";
         LevelHandler.Reload();
     }

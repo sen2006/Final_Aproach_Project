@@ -29,6 +29,7 @@ public class KeyCollectible : GravityObject
 
         if (distance <= radius + player.radius && !locked)
         {
+            SoundHandler.Pickup.Play();
             Console.WriteLine("- Collected Key ID:" + ID);
             MyGame.collectedKeys.Add(ID);
 

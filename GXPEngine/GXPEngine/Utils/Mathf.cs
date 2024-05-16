@@ -206,6 +206,10 @@ namespace GXPEngine
 			return f < min ? min : (f > max ? max : f);
 		}
 
-	}
+        internal static float Min(object value, float maxHealth)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
 

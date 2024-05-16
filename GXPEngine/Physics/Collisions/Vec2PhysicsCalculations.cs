@@ -1,5 +1,4 @@
 ﻿using GXPEngine;
-using System.Diagnostics.Tracing;
 
 public static class Vec2PhysicsCalculations
 {

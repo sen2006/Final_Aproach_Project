@@ -18,7 +18,7 @@ public class UFO : AnimationSprite
         key = new KeyCollectible("data/map/key0.png", 1, 1, new TiledObject());
         key.locked = true;
         MyGame.GetGame().AddChild(key);
-        key.gCollider._collider._position = new Vec2(obj.X+20,obj.Y-140);
+        key.gCollider._collider._position = new Vec2(obj.X-15,obj.Y-180);
     }
 
     void Update()
@@ -36,6 +36,7 @@ public class UFO : AnimationSprite
             }
         if (correct && !keySpawned)
         {
+            SoundHandler.UFOOpen.Play();
             overlay.visible = false;
             key.locked = false;
             Console.WriteLine("- Puzzle key unlocked");

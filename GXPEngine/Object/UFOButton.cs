@@ -28,6 +28,7 @@ public class UFOButton : AnimationSprite
         {
             state++;
             if (state > 3) state = 1;
+            SoundHandler.ButtonPress.Play();
         }
         Draw();
     }

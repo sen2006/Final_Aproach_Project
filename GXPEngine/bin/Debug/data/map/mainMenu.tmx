@@ -118,8 +118,8 @@
 </data>
  </layer>
  <objectgroup id="6" name="Objects">
-  <object id="40" type="QuitButton" gid="1" x="860.5" y="793" width="199" height="47"/>
-  <object id="42" type="PlayButton" gid="1" x="831" y="732" width="274" height="64"/>
+  <object id="40" type="QuitButton" gid="1" x="865.5" y="787.5" width="192" height="38"/>
+  <object id="42" type="PlayButton" gid="1" x="825.5" y="721" width="269" height="54.5"/>
  </objectgroup>
  <objectgroup id="7" name="Lights"/>
  <objectgroup id="8" name="VolumetricLights"/>

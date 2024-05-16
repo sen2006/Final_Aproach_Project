@@ -9,6 +9,7 @@ public class Player : GravityObject
     {
         Move,
         Idle,
+        Float,
         Jump,
         Boost,
         Landing
@@ -31,18 +32,19 @@ public class Player : GravityObject
 
     AnimationSprite moveAnimationSprite;
     AnimationSprite idleAnimationSprite;
+    AnimationSprite idleFloatAnimationSprite;
     AnimationSprite jumpAnimationSprite;
+    AnimationSprite boostAnimationSprite;
     AnimationSprite landingAnimationSprite;
 
-    int animationFrame;
-    int animationCounter;
     AnimationSprite currentAnimation;
     float animationDeltaFrameTime;
 
-    float jumpTimer = 0;
     float boostTimer = 0;
 
     float immunityTimer;
+
+    bool footstepPlayed = false;
 
     public Player(string filename, int cols, int rows, TiledObject obj) : base(filename, cols, rows, obj)
     {
@@ -55,19 +57,27 @@ public class Player : GravityObject
         MyGame.GetGame().player = this;
 
 
-        moveAnimationSprite = new AnimationSprite("data/player/running-animation-sprite-sheet.png", 5, 5, 22, false, false);
+        moveAnimationSprite = new AnimationSprite("data/player/walking.png", 5, 5, 22, false, false);
         moveAnimationSprite.visible = false;
         AddChild(moveAnimationSprite);
 
-        idleAnimationSprite = new AnimationSprite("data/player/floating-animation.png", 4, 3, -1, false, false);
+        idleAnimationSprite = new AnimationSprite("data/player/idle.png", 4, 4, -1, false, false);
         idleAnimationSprite.visible = false;
         AddChild(idleAnimationSprite);
 
-        jumpAnimationSprite = new AnimationSprite("data/player/jumping-animation.png", 3, 3, 8, false, false);
+        idleFloatAnimationSprite = new AnimationSprite("data/player/floating.png", 4, 4, 14, false, false);
+        idleFloatAnimationSprite.visible = false;
+        AddChild(idleFloatAnimationSprite);
+
+        jumpAnimationSprite = new AnimationSprite("data/player/jump-with-fire.png", 3, 3, 8, false, false);
         jumpAnimationSprite.visible = false;
         AddChild(jumpAnimationSprite);
 
-        landingAnimationSprite = jumpAnimationSprite;
+        boostAnimationSprite = new AnimationSprite("data/player/boost.png", 2, 2, 4, false, false);
+        boostAnimationSprite.visible = false;
+        AddChild(boostAnimationSprite);
+
+        landingAnimationSprite = new AnimationSprite("data/player/landing.png", 3, 2, 6, false, false); ;
         landingAnimationSprite.visible = false;
         AddChild(landingAnimationSprite);
 
@@ -118,6 +128,8 @@ public class Player : GravityObject
             MyGame.GetGame().GameOver();
             return true;
         }
+        if (immunityTimer <= 0)
+            health = Mathf.Min(health + Settings.healthRegen, Settings.maxHealth);
         return false;
     }
 
@@ -147,11 +159,12 @@ public class Player : GravityObject
         if (nearestPlanet != null && !(gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f))
         {
             boostTimer = Mathf.Min(boostTimer + Time.deltaTime, Settings.jumpBoostDelay);
+            state = State.Float;
         }
         else boostTimer = 0;
         if (Input.GetKey(Key.W) || Input.GetKey(Key.SPACE))
         {
-            bool allowJump = (jumpTimer >= Settings.jumpDelay);
+            bool allowJump = (jumpAnimationSprite.currentFrame >= Settings.jumpFrame);
             bool allowBoost = (boostTimer >= Settings.jumpBoostDelay);
             // JUMP
             if (fuel > 0)
@@ -161,23 +174,27 @@ public class Player : GravityObject
                     nearestPlanet.gCollider._collider.mass > 0)
                 {
                     Vec2 planetAngle = nearestPlanet.gCollider._collider._position - gCollider._collider._position;
-                    if (allowJump) gCollider._collider._position = nearestPlanet.gCollider._collider._position + (planetAngle.Normalized() * -(Settings.initialJumpDistance + radius + nearestPlanet.radius));
-                    if (allowJump) gCollider._collider._velocity = (vecRotation * Settings.jumpPower * -1);
+                    if (allowJump)
+                    {
+                        gCollider._collider._position = nearestPlanet.gCollider._collider._position + (planetAngle.Normalized() * -(Settings.initialJumpDistance + radius + nearestPlanet.radius));
+                        gCollider._collider._velocity = (vecRotation * Settings.jumpPower * -1);
+                        SoundHandler.Jump.Play();
+                    }
                     wasJump = allowJump;
-                    jumpTimer = Mathf.Min(jumpTimer + Time.deltaTime, Settings.jumpDelay);
                 }
-                else jumpTimer = 0;
                 if (!allowBoost) state = State.Jump;
                 else state = State.Boost;
                 if (allowJump || allowBoost) gCollider._collider._velocity.Lerp(vecRotation * Settings.boosterPower * -1, .02f);
             }
-            if (allowBoost) fuel = Mathf.Max(fuel - Settings.fuelUsage, 0);
+            if (allowBoost)
+            {
+                fuel = Mathf.Max(fuel - Settings.fuelUsage, 0);
+            }
             return;
         }
         else
         {
             wasJump = false;
-            jumpTimer = 0;
         }
         if (nearestPlanet != null &&
             gCollider._collider._position.distance(nearestPlanet.gCollider._collider._position) - (radius + nearestPlanet.radius) <= .5f &&
@@ -185,9 +202,11 @@ public class Player : GravityObject
             nearestPlanet.gCollider._collider.mass > 0 &&
             !(nearestPlanet is BlackHole))
         {
+            bool walk = false;
             // move LEFT and RIGHT if player is on planet
             if (Input.GetKey(Key.D))
             {
+                walk = true;
                 Vec2 targetMovament = targetRotation.Normalized() * Settings.walkSpeed;
                 targetMovament.RotateDegrees(-90);
                 gCollider._collider._position += targetMovament;
@@ -197,12 +216,36 @@ public class Player : GravityObject
             }
             else if (Input.GetKey(Key.A))
             {
+                walk = true;
                 Vec2 targetMovament = targetRotation.Normalized() * Settings.walkSpeed;
                 targetMovament.RotateDegrees(90);
                 gCollider._collider._position += targetMovament;
 
                 _mirrorX = true;
                 state = State.Move;
+            }
+            if (walk)
+            {
+                if (moveAnimationSprite.currentFrame == 10 || moveAnimationSprite.currentFrame == 21)
+                {
+                    if (!footstepPlayed)
+                    {
+                        switch (MyGame.random.Next(3))
+                        {
+                            case 0:
+                                SoundHandler.Footstep1.Play();
+                                break;
+                            case 1:
+                                SoundHandler.Footstep2.Play();
+                                break;
+                            case 2:
+                                SoundHandler.Footstep3.Play();
+                                break;
+                        }
+                        footstepPlayed = true;
+                    }
+                }
+                else footstepPlayed = false;
             }
         }
     }
@@ -256,12 +299,15 @@ public class Player : GravityObject
                 currentAnimation = idleAnimationSprite;
                 animationDeltaFrameTime = Settings.idleAnimationDeltaFrameTime;
                 break;
+            case State.Float:
+                currentAnimation = idleFloatAnimationSprite;
+                break;
             case State.Jump:
                 currentAnimation = jumpAnimationSprite;
                 animationDeltaFrameTime = Settings.jumpAnimationDeltaFrameTime;
                 break;
             case State.Boost:
-                currentAnimation = idleAnimationSprite;
+                currentAnimation = boostAnimationSprite;
                 animationDeltaFrameTime = Settings.boostAnimationDeltaFrameTime;
                 break;
             case State.Landing:
@@ -284,8 +330,6 @@ public class Player : GravityObject
             currentAnimation.width = width;
             currentAnimation.height = height;
             currentAnimation.SetXY(-radius, -radius);
-            animationCounter = 0;
-            animationFrame = 0;
         }
         currentAnimation.Animate(animationDeltaFrameTime);
         currentAnimation.Mirror(_mirrorX, _mirrorY);
@@ -304,6 +348,7 @@ public class Player : GravityObject
             health = Mathf.Max(Mathf.Min(health - damage, Settings.maxHealth), 0);
             immunityTimer = Settings.immunityTime;
             Console.WriteLine("Damage dealt to player:" + damage);
+            MyGame.GetGame().UI.damageScreenShow();
         }
     }
 }

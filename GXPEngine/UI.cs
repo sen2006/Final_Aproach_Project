@@ -17,6 +17,9 @@ public class UI : GameObject
     Sprite key3;
     Sprite key0;
 
+    Sprite damageScreen;
+    int damageScreenTimer=0;
+
     public UI()
     {
         coordinates = new EasyDraw(500, 50);
@@ -74,6 +77,11 @@ public class UI : GameObject
         key0.SetOrigin(key0.width / 2, 0);
         key0.SetXY(1800, 155);
         key0.scale = .2f;
+
+        damageScreen = new Sprite("data/UI/damage_screen.png");
+        AddChild(damageScreen);
+        damageScreen.visible = false;
+        damageScreen.alpha = .4f;
     }
 
     public void Draw()
@@ -100,12 +108,24 @@ public class UI : GameObject
         text.Clear(0, 0, 0, 0);
         text.TextSize(20);
         text.Text(Mathf.Round(MyGame.GetGame().player.GetHealth()*10)/10d+"/"+Settings.maxHealth, 1650, 100);
-        text.Text(MyGame.collectedKeys.Count+"/4", 1650, 250);
+        //text.Text(MyGame.collectedKeys.Count+"/4", 1650, 250);
 
         key0.visible = MyGame.collectedKeys.Contains(0);
         key1.visible = MyGame.collectedKeys.Contains(1);
         key2.visible = MyGame.collectedKeys.Contains(2);
         key3.visible = MyGame.collectedKeys.Contains(3);
+
+        if (damageScreenTimer>0)
+        {
+            damageScreen.visible=true;
+            damageScreenTimer-=Time.deltaTime;
+        } else { damageScreen.visible = false; }
+    }
+
+    public void damageScreenShow()
+    {
+        damageScreenTimer = Settings.damageUIOnScreenTime;
+        damageScreen.visible = true;
     }
 }
 

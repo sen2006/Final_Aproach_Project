@@ -106,7 +106,6 @@
     <Compile Include="GXPEngine\SoLoud\SoloudSoundSystem.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Vec2\Vec2.cs" />
-    <Compile Include="WallSegment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

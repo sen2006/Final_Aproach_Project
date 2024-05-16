@@ -42,13 +42,15 @@ public static class Vec2CollisionManager
                     float collisionTime = 1;
                     // ball on :
                     if (c2 is Vec2BallCollider c2B) { collisionTime = Vec2PhysicsCalculations.TimeOfImpactBall(c._velocity, c._position, c.GetOldPosition(), c2._position, cB.radius, c2B.radius); } // ball
-                    if (c2 is Vec2LineCollider c2L) {   float distance = c._position.distance(c2._position);
-                                                        if (distance >= 0) collisionTime = Vec2PhysicsCalculations.TimeOfImpactLine(cB._position, cB.GetOldPosition(), c2L.startPos, c2L.endPos, cB.radius);
-                                                        else collisionTime = Vec2PhysicsCalculations.TimeOfImpactLine(cB._position, cB.GetOldPosition(), c2L.endPos, c2L.startPos, cB.radius);
-                                                    } // line
+                    if (c2 is Vec2LineCollider c2L)
+                    {
+                        float distance = c._position.distance(c2._position);
+                        if (distance >= 0) collisionTime = Vec2PhysicsCalculations.TimeOfImpactLine(cB._position, cB.GetOldPosition(), c2L.startPos, c2L.endPos, cB.radius);
+                        else collisionTime = Vec2PhysicsCalculations.TimeOfImpactLine(cB._position, cB.GetOldPosition(), c2L.endPos, c2L.startPos, cB.radius);
+                    } // line
                     if (collisionTime > -1 && collisionTime < 1)
                     {
-                        collisions.Add(new Vec2Collision(c,c2,collisionTime));
+                        collisions.Add(new Vec2Collision(c, c2, collisionTime));
                     }
                 }
             }
@@ -130,7 +132,8 @@ public static class Vec2CollisionManager
             c2.Trigger(c);
             hasCollided = true;
         }
-        else */if (Vec2PhysicsCalculations.TimeOfImpactBall(c._velocity, c._position, c.GetOldPosition(), c2._position, c.radius, c2.radius) != 1)
+        else */
+        if (Vec2PhysicsCalculations.TimeOfImpactBall(c._velocity, c._position, c.GetOldPosition(), c2._position, c.radius, c2.radius) != 1)
         {
             //collision detected with other ball
 
@@ -166,8 +169,8 @@ public static class Vec2CollisionManager
 
         float scalarVecStart = differanceVecStart.Dot(lineVec.Normalized());
         float scalarVecEnd = differanceVecEnd.Dot(lineVec.Normalized() * -1);
-        
-        if ((distance < cB.radius && distance > -cB.radius) && 
+
+        if ((distance < cB.radius && distance > -cB.radius) &&
                 (scalarVecStart > 0 && scalarVecEnd > 0))
         { // check for collision
             if (cB.IsSolid() && cL.IsSolid())
@@ -199,4 +202,3 @@ public static class Vec2CollisionManager
         return hasCollided;
     }
 }
-

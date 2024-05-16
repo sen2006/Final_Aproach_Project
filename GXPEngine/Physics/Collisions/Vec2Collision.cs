@@ -1,6 +1,4 @@
-﻿
-
-public class Vec2Collision
+﻿public class Vec2Collision
 {
     public Vec2Collider c;
     public Vec2Collider c2;

@@ -12,12 +12,14 @@ public class BlackHole : Planet
 
     public override void Step()
     {
-        this.Animate(.1f);
+        this.Animate(Settings.blackHoleAnimationDeltaFrameTime);
         Player player = MyGame.GetGame().player;
         base.Step();
         Vec2 direction = player.gCollider._collider._position - gCollider._collider._position;
         float distance = direction.Length();
 
         if (distance < radius+player.radius) { player.Damage(10000); }
+
+        SoundHandler.BlackHoleAmbiance.SetDefaultVolume(0);
     }
 }

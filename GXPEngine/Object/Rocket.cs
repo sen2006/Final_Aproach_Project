@@ -22,7 +22,8 @@ public class Rocket : AnimationSprite
             MyGame.collectedKeys.Contains(3) && 
             MyGame.collectedKeys.Contains(0))
         {
-            MyGame.GetGame().currentLevelFile = "data/map/GameOverMenu.tmx";
+            SoundHandler.RocketFlyaway.Play();
+            MyGame.GetGame().currentLevelFile = "data/map/WinMenu.tmx";
             LevelHandler.Reload();
         }
     }
