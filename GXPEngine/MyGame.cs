@@ -50,7 +50,7 @@ public class MyGame : Game
         {
             if (Input.GetKey(Key.X))
             {
-                camera.scale = 4f;
+                camera.scale = 1.2f;
             } else if (Input.GetKey(Key.Z))
             {
                 camera.scale = .2f;

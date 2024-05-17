@@ -1,9 +1,9 @@
 ﻿public static class Settings
 {
     // gravity
-    internal static float gravitationalConstant = .1f;
-    internal static float maxVelocity = 150f;
-    internal static float minGravityToRotate = .5f;
+    internal static float gravitationalConstant = .05f;
+    internal static float maxVelocity = 25f;
+    internal static float minGravityToRotate = .2f;
     internal static float defauldPlanetDensity = 1f;
     internal static float defauldPlayerDensity = .8f;
     internal static float defauldBlackHoleDensity = 3.5f;
@@ -17,12 +17,12 @@
     internal static int jumpBoostDelay = 50;//MS
     internal static float initialJumpDistance = 10;
     internal static float jumpPower = 50;
-    internal static float boosterPower = 17;
-    internal static float walkSpeed = 3.5f;
+    internal static float boosterPower = 10.5f;
+    internal static float walkSpeed = 3f;
     internal static bool cameraRotation = false; // warning motion sickness
-    internal static float maxHealth = 3;
+    internal static float maxHealth = 2;
     internal static int immunityTime = 1000; //MS
-    internal static float healthRegen = 0.001f;
+    internal static float healthRegen = 0.0005f;
 
     // player animations
     internal static float moveAnimationDeltaFrameTime = .3f;

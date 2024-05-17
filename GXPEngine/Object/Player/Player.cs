@@ -281,7 +281,7 @@ public class Player : GravityObject
         {
             nearestPlanetForce = forceMagnitude;
             targetRotation = (nearestPlanet.gCollider._collider._position - gCollider._collider._position).Normalized();
-            vecRotation.Lerp(targetRotation, (distance - (radius + nearestPlanet.radius) <= 0.5f) ? .6f : .0025f + .025f * (forceMagnitude / 150));
+            vecRotation.Lerp(targetRotation, (distance - (radius + nearestPlanet.radius) <= 0.5f) ? .6f : .0025f + .005f * (forceMagnitude / 50));
         }
     }
 
